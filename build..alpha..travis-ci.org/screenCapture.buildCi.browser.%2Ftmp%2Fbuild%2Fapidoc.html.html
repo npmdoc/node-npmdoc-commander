@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="https://github.com/tj/commander.js#readme"
-
-    >commander (v2.9.0)</a>
+    <a href="https://github.com/tj/commander.js#readme">commander (v2.9.0)</a>
 </h1>
 <h4>the complete solution for node.js command-line programs</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.commander">module commander</a><ol>
 
@@ -1118,7 +1111,7 @@
   this._execs = {};
   this._allowUnknownOption = false;
   this._args = [];
-  this._name = name || &#x27;&#x27;;
+  this._name = name || '';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -1147,7 +1140,7 @@
     // If there are still any unknown options, then we simply
     // die, unless someone asked for help, in which case we give it
     // to them, and then we die.
-    if (parsed.unknown.length &#x3e; 0) {
+    if (parsed.unknown.length &gt; 0) {
       self.unknownOption(parsed.unknown[0]);
     }
 
@@ -1155,7 +1148,7 @@
     if (parsed.args.length) args = parsed.args.concat(args);
 
     self._args.forEach(function(arg, i) {
-      if (arg.required &#x26;&#x26; null == args[i]) {
+      if (arg.required &amp;&amp; null == args[i]) {
         self.missingArgument(arg.name);
       } else if (arg.variadic) {
         if (i !== self._args.length - 1) {
@@ -1178,7 +1171,7 @@
     fn.apply(self, args);
   };
   var parent = this.parent || this;
-  var name = parent === this ? &#x27;*&#x27; : this._name;
+  var name = parent === this ? '*' : this._name;
   parent.on(name, listener);
   if (this._alias) parent.on(this._alias, listener);
   return this;
@@ -1196,7 +1189,7 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">Command.prototype.addImplicitHelpCommand = function () {
-  this.command(&#x27;help [cmd]&#x27;, &#x27;display help for [cmd]&#x27;);
+  this.command('help [cmd]', 'display help for [cmd]');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -1291,20 +1284,20 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">Command.prototype.commandHelp = function () {
-  if (!this.commands.length) return &#x27;&#x27;;
+  if (!this.commands.length) return '';
 
   var commands = this.commands.filter(function(cmd) {
     return !cmd._noHelp;
   }).map(function(cmd) {
     var args = cmd._args.map(function(arg) {
       return humanReadableArgName(arg);
-    }).join(&#x27; &#x27;);
+    }).join(' ');
 
     return [
       cmd._name
-        + (cmd._alias ? &#x27;|&#x27; + cmd._alias : &#x27;&#x27;)
-        + (cmd.options.length ? &#x27; [options]&#x27; : &#x27;&#x27;)
-        + &#x27; &#x27; + args
+        + (cmd._alias ? '|' + cmd._alias : '')
+        + (cmd.options.length ? ' [options]' : '')
+        + ' ' + args
       , cmd.description()
     ];
   });
@@ -1314,15 +1307,15 @@
   }, 0);
 
   return [
-    &#x27;&#x27;
-    , &#x27;  Commands:&#x27;
-    , &#x27;&#x27;
+    ''
+    , '  Commands:'
+    , ''
     , commands.map(function(cmd) {
-      var desc = cmd[1] ? &#x27;  &#x27; + cmd[1] : &#x27;&#x27;;
+      var desc = cmd[1] ? '  ' + cmd[1] : '';
       return pad(cmd[0], width) + desc;
-    }).join(&#x27;\n&#x27;).replace(/^/gm, &#x27;    &#x27;)
-    , &#x27;&#x27;
-  ].join(&#x27;\n&#x27;);
+    }).join('\n').replace(/^/gm, '    ')
+    , ''
+  ].join('\n');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -1357,18 +1350,18 @@
   args = args.concat(unknown);
 
   if (!args.length) this.help();
-  if (&#x27;help&#x27; == args[0] &#x26;&#x26; 1 == args.length) this.help();
+  if ('help' == args[0] &amp;&amp; 1 == args.length) this.help();
 
-  // &#x3c;cmd&#x3e; --help
-  if (&#x27;help&#x27; == args[0]) {
+  // &lt;cmd&gt; --help
+  if ('help' == args[0]) {
     args[0] = args[1];
-    args[1] = &#x27;--help&#x27;;
+    args[1] = '--help';
   }
 
   // executable
   var f = argv[1];
   // name of the subcommand, link `pm-install`
-  var bin = basename(f, &#x27;.js&#x27;) + &#x27;-&#x27; + args[0];
+  var bin = basename(f, '.js') + '-' + args[0];
 
 
   // In case of globally installed, get the base dir where executable
@@ -1377,18 +1370,18 @@
     , link = readlink(f);
 
   // when symbolink is relative path
-  if (link !== f &#x26;&#x26; link.charAt(0) !== &#x27;/&#x27;) {
+  if (link !== f &amp;&amp; link.charAt(0) !== '/') {
     link = path.join(dirname(f), link)
   }
   baseDir = dirname(link);
 
-  // prefer local `./&#x3c;bin&#x3e;` to bin in the $PATH
+  // prefer local `./&lt;bin&gt;` to bin in the $PATH
   var localBin = path.join(baseDir, bin);
 
   // whether bin file is a js script with explicit `.js` extension
   var isExplicitJS = false;
-  if (exists(localBin + &#x27;.js&#x27;)) {
-    bin = localBin + &#x27;.js&#x27;;
+  if (exists(localBin + '.js')) {
+    bin = localBin + '.js';
     isExplicitJS = true;
   } else if (exists(localBin)) {
     bin = localBin;
@@ -1397,27 +1390,27 @@
   args = args.slice(1);
 
   var proc;
-  if (process.platform !== &#x27;win32&#x27;) {
+  if (process.platform !== 'win32') {
     if (isExplicitJS) {
       args.unshift(localBin);
       // add executable arguments to spawn
       args = (process.execArgv || []).concat(args);
 
-      proc = spawn(&#x27;node&#x27;, args, { stdio: &#x27;inherit&#x27;, customFds: [0, 1, 2] });
+      proc = spawn('node', args, { stdio: 'inherit', customFds: [0, 1, 2] });
     } else {
-      proc = spawn(bin, args, { stdio: &#x27;inherit&#x27;, customFds: [0, 1, 2] });
+      proc = spawn(bin, args, { stdio: 'inherit', customFds: [0, 1, 2] });
     }
   } else {
     args.unshift(localBin);
-    proc = spawn(process.execPath, args, { stdio: &#x27;inherit&#x27;});
+    proc = spawn(process.execPath, args, { stdio: 'inherit'});
   }
 
-  proc.on(&#x27;close&#x27;, process.exit.bind(process));
-  proc.on(&#x27;error&#x27;, function(err) {
-    if (err.code == &#x22;ENOENT&#x22;) {
-      console.error(&#x27;\n  %s(1) does not exist, try --help\n&#x27;, bin);
-    } else if (err.code == &#x22;EACCES&#x22;) {
-      console.error(&#x27;\n  %s(1) not executable. try chmod or run with root\n&#x27;, bin);
+  proc.on('close', process.exit.bind(process));
+  proc.on('error', function(err) {
+    if (err.code == "ENOENT") {
+      console.error('\n  %s(1) does not exist, try --help\n', bin);
+    } else if (err.code == "EACCES") {
+      console.error('\n  %s(1) not executable. try chmod or run with root\n', bin);
     }
     process.exit(1);
   });
@@ -1457,19 +1450,19 @@
   var desc = [];
   if (this._description) {
     desc = [
-      &#x27;  &#x27; + this._description
-      , &#x27;&#x27;
+      '  ' + this._description
+      , ''
     ];
   }
 
   var cmdName = this._name;
   if (this._alias) {
-    cmdName = cmdName + &#x27;|&#x27; + this._alias;
+    cmdName = cmdName + '|' + this._alias;
   }
   var usage = [
-    &#x27;&#x27;
-    ,&#x27;  Usage: &#x27; + cmdName + &#x27; &#x27; + this.usage()
-    , &#x27;&#x27;
+    ''
+    ,'  Usage: ' + cmdName + ' ' + this.usage()
+    , ''
   ];
 
   var cmds = [];
@@ -1477,18 +1470,18 @@
   if (commandHelp) cmds = [commandHelp];
 
   var options = [
-    &#x27;  Options:&#x27;
-    , &#x27;&#x27;
-    , &#x27;&#x27; + this.optionHelp().replace(/^/gm, &#x27;    &#x27;)
-    , &#x27;&#x27;
-    , &#x27;&#x27;
+    '  Options:'
+    , ''
+    , '' + this.optionHelp().replace(/^/gm, '    ')
+    , ''
+    , ''
   ];
 
   return usage
     .concat(cmds)
     .concat(desc)
     .concat(options)
-    .join(&#x27;\n&#x27;);
+    .join('\n');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -1521,7 +1514,7 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">Command.prototype.missingArgument = function (name) {
   console.error();
-  console.error(&#x22;  error: missing required argument `%s&#x27;&#x22;, name);
+  console.error("  error: missing required argument `%s'", name);
   console.error();
   process.exit(1);
 }</pre></li>
@@ -1558,23 +1551,23 @@
     , lastOpt
     , index;
 
-  for (var i = 0, len = args.length; i &#x3c; len; ++i) {
+  for (var i = 0, len = args.length; i &lt; len; ++i) {
     arg = args[i];
-    if (i &#x3e; 0) {
+    if (i &gt; 0) {
       lastOpt = this.optionFor(args[i-1]);
     }
 
-    if (arg === &#x27;--&#x27;) {
+    if (arg === '--') {
       // Honor option terminator
       ret = ret.concat(args.slice(i));
       break;
-    } else if (lastOpt &#x26;&#x26; lastOpt.required) {
+    } else if (lastOpt &amp;&amp; lastOpt.required) {
       ret.push(arg);
-    } else if (arg.length &#x3e; 1 &#x26;&#x26; &#x27;-&#x27; == arg[0] &#x26;&#x26; &#x27;-&#x27; != arg[1]) {
-      arg.slice(1).split(&#x27;&#x27;).forEach(function(c) {
-        ret.push(&#x27;-&#x27; + c);
+    } else if (arg.length &gt; 1 &amp;&amp; '-' == arg[0] &amp;&amp; '-' != arg[1]) {
+      arg.slice(1).split('').forEach(function(c) {
+        ret.push('-' + c);
       });
-    } else if (/^--/.test(arg) &#x26;&#x26; ~(index = arg.indexOf(&#x27;=&#x27;))) {
+    } else if (/^--/.test(arg) &amp;&amp; ~(index = arg.indexOf('='))) {
       ret.push(arg.slice(0, index), arg.slice(index + 1));
     } else {
       ret.push(arg);
@@ -1602,7 +1595,7 @@
     , name = camelcase(oname);
 
   // default as 3rd arg
-  if (typeof fn != &#x27;function&#x27;) {
+  if (typeof fn != 'function') {
     if (fn instanceof RegExp) {
       var regex = fn;
       fn = function(val, def) {
@@ -1616,7 +1609,7 @@
     }
   }
 
-  // preassign default value only for --no-*, [optional], or &#x3c;required&#x3e;
+  // preassign default value only for --no-*, [optional], or &lt;required&gt;
   if (false == option.bool || option.optional || option.required) {
     // when --no-* we make sure default is true
     if (false == option.bool) defaultValue = true;
@@ -1627,16 +1620,16 @@
   // register the option
   this.options.push(option);
 
-  // when it&#x27;s passed assign the value
+  // when it's passed assign the value
   // and conditionally invoke the callback
   this.on(oname, function(val) {
     // coercion
-    if (null !== val &#x26;&#x26; fn) val = fn(val, undefined === self[name]
+    if (null !== val &amp;&amp; fn) val = fn(val, undefined === self[name]
       ? defaultValue
       : self[name]);
 
     // unassigned or bool
-    if (&#x27;boolean&#x27; == typeof self[name] || &#x27;undefined&#x27; == typeof self[name]) {
+    if ('boolean' == typeof self[name] || 'undefined' == typeof self[name]) {
       // if no value, bool true, and we have a default, then use it!
       if (null == val) {
         self[name] = option.bool
@@ -1666,7 +1659,7 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">Command.prototype.optionFor = function (arg) {
-  for (var i = 0, len = this.options.length; i &#x3c; len; ++i) {
+  for (var i = 0, len = this.options.length; i &lt; len; ++i) {
     if (this.options[i].is(arg)) {
       return this.options[i];
     }
@@ -1688,11 +1681,11 @@
   var width = this.largestOptionLength();
 
   // Prepend the help information
-  return [pad(&#x27;-h, --help&#x27;, width) + &#x27;  &#x27; + &#x27;output usage information&#x27;]
+  return [pad('-h, --help', width) + '  ' + 'output usage information']
       .concat(this.options.map(function(option) {
-        return pad(option.flags, width) + &#x27;  &#x27; + option.description;
+        return pad(option.flags, width) + '  ' + option.description;
       }))
-      .join(&#x27;\n&#x27;);
+      .join('\n');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -1709,9 +1702,9 @@
     <li>description and source-code<pre class="apidocCodePre">Command.prototype.optionMissingArgument = function (option, flag) {
   console.error();
   if (flag) {
-    console.error(&#x22;  error: option `%s&#x27; argument missing, got `%s&#x27;&#x22;, option.flags, flag);
+    console.error("  error: option `%s' argument missing, got `%s'", option.flags, flag);
   } else {
-    console.error(&#x22;  error: option `%s&#x27; argument missing&#x22;, option.flags);
+    console.error("  error: option `%s' argument missing", option.flags);
   }
   console.error();
   process.exit(1);
@@ -1732,9 +1725,9 @@
   var result = {}
     , len = this.options.length;
 
-  for (var i = 0 ; i &#x3c; len; i++) {
+  for (var i = 0 ; i &lt; len; i++) {
     var key = camelcase(this.options[i].name());
-    result[key] = key === &#x27;version&#x27; ? this._version : this[key];
+    result[key] = key === 'version' ? this._version : this[key];
   }
   return result;
 }</pre></li>
@@ -1757,7 +1750,7 @@
     }
   }
   process.stdout.write(cb(this.helpInformation()));
-  this.emit(&#x27;--help&#x27;);
+  this.emit('--help');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -1779,12 +1772,12 @@
   this.rawArgs = argv;
 
   // guess name
-  this._name = this._name || basename(argv[1], &#x27;.js&#x27;);
+  this._name = this._name || basename(argv[1], '.js');
 
   // github-style sub-commands with no sub-command
-  if (this.executables &#x26;&#x26; argv.length &#x3c; 3 &#x26;&#x26; !this.defaultExecutable) {
+  if (this.executables &amp;&amp; argv.length &lt; 3 &amp;&amp; !this.defaultExecutable) {
     // this user needs help
-    argv.push(&#x27;--help&#x27;);
+    argv.push('--help');
   }
 
   // process argv
@@ -1795,7 +1788,7 @@
 
   // executable sub-commands
   var name = result.args[0];
-  if (this._execs[name] &#x26;&#x26; typeof this._execs[name] != &#x22;function&#x22;) {
+  if (this._execs[name] &amp;&amp; typeof this._execs[name] != "function") {
     return this.executeSubCommand(argv, args, parsed.unknown);
   } else if (this.defaultExecutable) {
     // use the default subcommand
@@ -1825,14 +1818,14 @@
     if (this.listeners(name).length) {
       this.emit(args.shift(), args, unknown);
     } else {
-      this.emit(&#x27;*&#x27;, args);
+      this.emit('*', args);
     }
   } else {
     outputHelpIfNecessary(this, unknown);
 
     // If there were no args and we have unknown options,
     // then they are extraneous and we need to error.
-    if (unknown.length &#x3e; 0) {
+    if (unknown.length &gt; 0) {
       this.unknownOption(unknown[0]);
     }
   }
@@ -1857,21 +1850,21 @@
   args.forEach(function(arg) {
     var argDetails = {
       required: false,
-      name: &#x27;&#x27;,
+      name: '',
       variadic: false
     };
 
     switch (arg[0]) {
-      case &#x27;&#x3c;&#x27;:
+      case '&lt;':
         argDetails.required = true;
         argDetails.name = arg.slice(1, -1);
         break;
-      case &#x27;[&#x27;:
+      case '[':
         argDetails.name = arg.slice(1, -1);
         break;
     }
 
-    if (argDetails.name.length &#x3e; 3 &#x26;&#x26; argDetails.name.slice(-3) === &#x27;...&#x27;) {
+    if (argDetails.name.length &gt; 3 &amp;&amp; argDetails.name.slice(-3) === '...') {
       argDetails.variadic = true;
       argDetails.name = argDetails.name.slice(0, -3);
     }
@@ -1903,11 +1896,11 @@
   var unknownOptions = [];
 
   // parse options
-  for (var i = 0; i &#x3c; len; ++i) {
+  for (var i = 0; i &lt; len; ++i) {
     arg = argv[i];
 
     // literal args after --
-    if (&#x27;--&#x27; == arg) {
+    if ('--' == arg) {
       literal = true;
       continue;
     }
@@ -1930,7 +1923,7 @@
       // optional arg
       } else if (option.optional) {
         arg = argv[i+1];
-        if (null == arg || (&#x27;-&#x27; == arg[0] &#x26;&#x26; &#x27;-&#x27; != arg)) {
+        if (null == arg || ('-' == arg[0] &amp;&amp; '-' != arg)) {
           arg = null;
         } else {
           ++i;
@@ -1944,13 +1937,13 @@
     }
 
     // looks like an option
-    if (arg.length &#x3e; 1 &#x26;&#x26; &#x27;-&#x27; == arg[0]) {
+    if (arg.length &gt; 1 &amp;&amp; '-' == arg[0]) {
       unknownOptions.push(arg);
 
       // If the next argument looks like it might be
       // an argument for this option, we pass it on.
-      // If it isn&#x27;t, then it&#x27;ll simply be ignored
-      if (argv[i+1] &#x26;&#x26; &#x27;-&#x27; != argv[i+1][0]) {
+      // If it isn't, then it'll simply be ignored
+      if (argv[i+1] &amp;&amp; '-' != argv[i+1][0]) {
         unknownOptions.push(argv[++i]);
       }
       continue;
@@ -1977,7 +1970,7 @@
     <li>description and source-code<pre class="apidocCodePre">Command.prototype.unknownOption = function (flag) {
   if (this._allowUnknownOption) return;
   console.error();
-  console.error(&#x22;  error: unknown option `%s&#x27;&#x22;, flag);
+  console.error("  error: unknown option `%s'", flag);
   console.error();
   process.exit(1);
 }</pre></li>
@@ -1998,9 +1991,9 @@
     return humanReadableArgName(arg);
   });
 
-  var usage = &#x27;[options]&#x27;
-    + (this.commands.length ? &#x27; [command]&#x27; : &#x27;&#x27;)
-    + (this._args.length ? &#x27; &#x27; + args.join(&#x27; &#x27;) : &#x27;&#x27;);
+  var usage = '[options]'
+    + (this.commands.length ? ' [command]' : '')
+    + (this._args.length ? ' ' + args.join(' ') : '');
 
   if (0 == arguments.length) return this._usage || usage;
   this._usage = str;
@@ -2021,7 +2014,7 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">Command.prototype.variadicArgNotLast = function (name) {
   console.error();
-  console.error(&#x22;  error: variadic arguments must be last `%s&#x27;&#x22;, name);
+  console.error("  error: variadic arguments must be last `%s'", name);
   console.error();
   process.exit(1);
 }</pre></li>
@@ -2040,10 +2033,10 @@
     <li>description and source-code<pre class="apidocCodePre">Command.prototype.version = function (str, flags) {
   if (0 == arguments.length) return this._version;
   this._version = str;
-  flags = flags || &#x27;-V, --version&#x27;;
-  this.option(flags, &#x27;output the version number&#x27;);
-  this.on(&#x27;version&#x27;, function() {
-    process.stdout.write(str + &#x27;\n&#x27;);
+  flags = flags || '-V, --version';
+  this.option(flags, 'output the version number');
+  this.on('version', function() {
+    process.stdout.write(str + '\n');
     process.exit(0);
   });
   return this;
@@ -2062,13 +2055,13 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function Option(flags, description) {
   this.flags = flags;
-  this.required = ~flags.indexOf(&#x27;&#x3c;&#x27;);
-  this.optional = ~flags.indexOf(&#x27;[&#x27;);
-  this.bool = !~flags.indexOf(&#x27;-no-&#x27;);
+  this.required = ~flags.indexOf('&lt;');
+  this.optional = ~flags.indexOf('[');
+  this.bool = !~flags.indexOf('-no-');
   flags = flags.split(/[ ,|]+/);
-  if (flags.length &#x3e; 1 &#x26;&#x26; !/^[[&#x3c;]/.test(flags[1])) this.short = flags.shift();
+  if (flags.length &gt; 1 &amp;&amp; !/^[[&lt;]/.test(flags[1])) this.short = flags.shift();
   this.long = flags.shift();
-  this.description = description || &#x27;&#x27;;
+  this.description = description || '';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -2099,8 +2092,8 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">Option.prototype.name = function () {
   return this.long
-    .replace(&#x27;--&#x27;, &#x27;&#x27;)
-    .replace(&#x27;no-&#x27;, &#x27;&#x27;);
+    .replace('--', '')
+    .replace('no-', '');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -2139,7 +2132,7 @@
   this._execs = {};
   this._allowUnknownOption = false;
   this._args = [];
-  this._name = name || &#x27;&#x27;;
+  this._name = name || '';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -2173,7 +2166,7 @@
     // If there are still any unknown options, then we simply
     // die, unless someone asked for help, in which case we give it
     // to them, and then we die.
-    if (parsed.unknown.length &#x3e; 0) {
+    if (parsed.unknown.length &gt; 0) {
       self.unknownOption(parsed.unknown[0]);
     }
 
@@ -2181,7 +2174,7 @@
     if (parsed.args.length) args = parsed.args.concat(args);
 
     self._args.forEach(function(arg, i) {
-      if (arg.required &#x26;&#x26; null == args[i]) {
+      if (arg.required &amp;&amp; null == args[i]) {
         self.missingArgument(arg.name);
       } else if (arg.variadic) {
         if (i !== self._args.length - 1) {
@@ -2204,7 +2197,7 @@
     fn.apply(self, args);
   };
   var parent = this.parent || this;
-  var name = parent === this ? &#x27;*&#x27; : this._name;
+  var name = parent === this ? '*' : this._name;
   parent.on(name, listener);
   if (this._alias) parent.on(this._alias, listener);
   return this;
@@ -2212,16 +2205,16 @@
     <li>example usage<pre class="apidocCodePre">...
  */
 
-var program = require(&#x27;commander&#x27;);
+var program = require('commander');
 
 program
-.version(&#x27;0.0.1&#x27;)
-.command(&#x27;rmdir &#x3c;dir&#x3e; [otherDirs...]&#x27;)
+.version('0.0.1')
+.command('rmdir &lt;dir&gt; [otherDirs...]')
 .<span class="apidocCodeKeywordSpan">action</span>(function (dir, otherDirs) {
-  console.log(&#x27;rmdir %s&#x27;, dir);
+  console.log('rmdir %s', dir);
   if (otherDirs) {
     otherDirs.forEach(function (oDir) {
-      console.log(&#x27;rmdir %s&#x27;, oDir);
+      console.log('rmdir %s', oDir);
     });
   }
 });
@@ -2238,7 +2231,7 @@ program
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">addImplicitHelpCommand = function () {
-  this.command(&#x27;help [cmd]&#x27;, &#x27;display help for [cmd]&#x27;);
+  this.command('help [cmd]', 'display help for [cmd]');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
  * @param {Array} argv
@@ -2254,7 +2247,7 @@ if (this.executables) this.<span class="apidocCodeKeywordSpan">addImplicitHelpCo
 this.rawArgs = argv;
 
 // guess name
-this._name = this._name || basename(argv[1], &#x27;.js&#x27;);
+this._name = this._name || basename(argv[1], '.js');
 ...</pre></li>
     </ul>
 
@@ -2273,20 +2266,20 @@ this._name = this._name || basename(argv[1], &#x27;.js&#x27;);
   return this;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  var mode = options.setup_mode || &#x22;normal&#x22;;
-  env = env || &#x27;all&#x27;;
-  console.log(&#x27;setup for %s env(s) with %s mode&#x27;, env, mode);
+  var mode = options.setup_mode || "normal";
+  env = env || 'all';
+  console.log('setup for %s env(s) with %s mode', env, mode);
 });
 
 program
-.command(&#x27;exec &#x3c;cmd&#x3e;&#x27;)
-.<span class="apidocCodeKeywordSpan">alias</span>(&#x27;ex&#x27;)
-.description(&#x27;execute the given remote cmd&#x27;)
-.option(&#x22;-e, --exec_mode &#x3c;mode&#x3e;&#x22;, &#x22;Which exec mode to use&#x22;)
+.command('exec &lt;cmd&gt;')
+.<span class="apidocCodeKeywordSpan">alias</span>('ex')
+.description('execute the given remote cmd')
+.option("-e, --exec_mode &lt;mode&gt;", "Which exec mode to use")
 .action(function(cmd, options){
-  console.log(&#x27;exec &#x22;%s&#x22; using %s mode&#x27;, cmd, options.exec_mode);
-}).on(&#x27;--help&#x27;, function() {
-  console.log(&#x27;  Examples:&#x27;);
+  console.log('exec "%s" using %s mode', cmd, options.exec_mode);
+}).on('--help', function() {
+  console.log('  Examples:');
   console.log();
 ...</pre></li>
     </ul>
@@ -2323,11 +2316,11 @@ program
 ```js
 #!/usr/bin/env node
 
-var program = require(&#x27;../&#x27;);
+var program = require('../');
 
 program
-  .version(&#x27;0.0.1&#x27;)
-  .<span class="apidocCodeKeywordSpan">arguments</span>(&#x27;&#x3c;cmd&#x3e; [env]&#x27;)
+  .version('0.0.1')
+  .<span class="apidocCodeKeywordSpan">arguments</span>('&lt;cmd&gt; [env]')
   .action(function (cmd, env) {
      cmdValue = cmd;
      envValue = env;
@@ -2370,16 +2363,16 @@ program.parse(process.argv);
  * Module dependencies.
  */
 
-var program = require(&#x27;commander&#x27;);
+var program = require('commander');
 
 program
-.version(&#x27;0.0.1&#x27;)
-.<span class="apidocCodeKeywordSpan">command</span>(&#x27;rmdir &#x3c;dir&#x3e; [otherDirs...]&#x27;)
+.version('0.0.1')
+.<span class="apidocCodeKeywordSpan">command</span>('rmdir &lt;dir&gt; [otherDirs...]')
 .action(function (dir, otherDirs) {
-  console.log(&#x27;rmdir %s&#x27;, dir);
+  console.log('rmdir %s', dir);
   if (otherDirs) {
     otherDirs.forEach(function (oDir) {
-      console.log(&#x27;rmdir %s&#x27;, oDir);
+      console.log('rmdir %s', oDir);
     });
   }
 ...</pre></li>
@@ -2395,20 +2388,20 @@ program
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">commandHelp = function () {
-  if (!this.commands.length) return &#x27;&#x27;;
+  if (!this.commands.length) return '';
 
   var commands = this.commands.filter(function(cmd) {
     return !cmd._noHelp;
   }).map(function(cmd) {
     var args = cmd._args.map(function(arg) {
       return humanReadableArgName(arg);
-    }).join(&#x27; &#x27;);
+    }).join(' ');
 
     return [
       cmd._name
-        + (cmd._alias ? &#x27;|&#x27; + cmd._alias : &#x27;&#x27;)
-        + (cmd.options.length ? &#x27; [options]&#x27; : &#x27;&#x27;)
-        + &#x27; &#x27; + args
+        + (cmd._alias ? '|' + cmd._alias : '')
+        + (cmd.options.length ? ' [options]' : '')
+        + ' ' + args
       , cmd.description()
     ];
   });
@@ -2418,21 +2411,21 @@ program
   }, 0);
 
   return [
-    &#x27;&#x27;
-    , &#x27;  Commands:&#x27;
-    , &#x27;&#x27;
+    ''
+    , '  Commands:'
+    , ''
     , commands.map(function(cmd) {
-      var desc = cmd[1] ? &#x27;  &#x27; + cmd[1] : &#x27;&#x27;;
+      var desc = cmd[1] ? '  ' + cmd[1] : '';
       return pad(cmd[0], width) + desc;
-    }).join(&#x27;\n&#x27;).replace(/^/gm, &#x27;    &#x27;)
-    , &#x27;&#x27;
-  ].join(&#x27;\n&#x27;);
+    }).join('\n').replace(/^/gm, '    ')
+    , ''
+  ].join('\n');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 var usage = [
-  &#x27;&#x27;
-  ,&#x27;  Usage: &#x27; + cmdName + &#x27; &#x27; + this.usage()
-  , &#x27;&#x27;
+  ''
+  ,'  Usage: ' + cmdName + ' ' + this.usage()
+  , ''
 ];
 
 var cmds = [];
@@ -2440,10 +2433,10 @@ var commandHelp = this.<span class="apidocCodeKeywordSpan">commandHelp</span>();
 if (commandHelp) cmds = [commandHelp];
 
 var options = [
-  &#x27;  Options:&#x27;
-  , &#x27;&#x27;
-  , &#x27;&#x27; + this.optionHelp().replace(/^/gm, &#x27;    &#x27;)
-  , &#x27;&#x27;
+  '  Options:'
+  , ''
+  , '' + this.optionHelp().replace(/^/gm, '    ')
+  , ''
 ...</pre></li>
     </ul>
 
@@ -2462,19 +2455,19 @@ var options = [
   return this;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-.version(&#x27;0.0.1&#x27;)
-.option(&#x27;-C, --chdir &#x3c;path&#x3e;&#x27;, &#x27;change the working directory&#x27;)
-.option(&#x27;-c, --config &#x3c;path&#x3e;&#x27;, &#x27;set config path. defaults to ./deploy.conf&#x27;)
-.option(&#x27;-T, --no-tests&#x27;, &#x27;ignore test hook&#x27;)
+.version('0.0.1')
+.option('-C, --chdir &lt;path&gt;', 'change the working directory')
+.option('-c, --config &lt;path&gt;', 'set config path. defaults to ./deploy.conf')
+.option('-T, --no-tests', 'ignore test hook')
 
 program
-.command(&#x27;setup [env]&#x27;)
-.<span class="apidocCodeKeywordSpan">description</span>(&#x27;run setup commands for all envs&#x27;)
-.option(&#x22;-s, --setup_mode [mode]&#x22;, &#x22;Which setup mode to use&#x22;)
+.command('setup [env]')
+.<span class="apidocCodeKeywordSpan">description</span>('run setup commands for all envs')
+.option("-s, --setup_mode [mode]", "Which setup mode to use")
 .action(function(env, options){
-  var mode = options.setup_mode || &#x22;normal&#x22;;
-  env = env || &#x27;all&#x27;;
-  console.log(&#x27;setup for %s env(s) with %s mode&#x27;, env, mode);
+  var mode = options.setup_mode || "normal";
+  env = env || 'all';
+  console.log('setup for %s env(s) with %s mode', env, mode);
 });
 ...</pre></li>
     </ul>
@@ -2492,18 +2485,18 @@ program
   args = args.concat(unknown);
 
   if (!args.length) this.help();
-  if (&#x27;help&#x27; == args[0] &#x26;&#x26; 1 == args.length) this.help();
+  if ('help' == args[0] &amp;&amp; 1 == args.length) this.help();
 
-  // &#x3c;cmd&#x3e; --help
-  if (&#x27;help&#x27; == args[0]) {
+  // &lt;cmd&gt; --help
+  if ('help' == args[0]) {
     args[0] = args[1];
-    args[1] = &#x27;--help&#x27;;
+    args[1] = '--help';
   }
 
   // executable
   var f = argv[1];
   // name of the subcommand, link `pm-install`
-  var bin = basename(f, &#x27;.js&#x27;) + &#x27;-&#x27; + args[0];
+  var bin = basename(f, '.js') + '-' + args[0];
 
 
   // In case of globally installed, get the base dir where executable
@@ -2512,18 +2505,18 @@ program
     , link = readlink(f);
 
   // when symbolink is relative path
-  if (link !== f &#x26;&#x26; link.charAt(0) !== &#x27;/&#x27;) {
+  if (link !== f &amp;&amp; link.charAt(0) !== '/') {
     link = path.join(dirname(f), link)
   }
   baseDir = dirname(link);
 
-  // prefer local `./&#x3c;bin&#x3e;` to bin in the $PATH
+  // prefer local `./&lt;bin&gt;` to bin in the $PATH
   var localBin = path.join(baseDir, bin);
 
   // whether bin file is a js script with explicit `.js` extension
   var isExplicitJS = false;
-  if (exists(localBin + &#x27;.js&#x27;)) {
-    bin = localBin + &#x27;.js&#x27;;
+  if (exists(localBin + '.js')) {
+    bin = localBin + '.js';
     isExplicitJS = true;
   } else if (exists(localBin)) {
     bin = localBin;
@@ -2532,27 +2525,27 @@ program
   args = args.slice(1);
 
   var proc;
-  if (process.platform !== &#x27;win32&#x27;) {
+  if (process.platform !== 'win32') {
     if (isExplicitJS) {
       args.unshift(localBin);
       // add executable arguments to spawn
       args = (process.execArgv || []).concat(args);
 
-      proc = spawn(&#x27;node&#x27;, args, { stdio: &#x27;inherit&#x27;, customFds: [0, 1, 2] });
+      proc = spawn('node', args, { stdio: 'inherit', customFds: [0, 1, 2] });
     } else {
-      proc = spawn(bin, args, { stdio: &#x27;inherit&#x27;, customFds: [0, 1, 2] });
+      proc = spawn(bin, args, { stdio: 'inherit', customFds: [0, 1, 2] });
     }
   } else {
     args.unshift(localBin);
-    proc = spawn(process.execPath, args, { stdio: &#x27;inherit&#x27;});
+    proc = spawn(process.execPath, args, { stdio: 'inherit'});
   }
 
-  proc.on(&#x27;close&#x27;, process.exit.bind(process));
-  proc.on(&#x27;error&#x27;, function(err) {
-    if (err.code == &#x22;ENOENT&#x22;) {
-      console.error(&#x27;\n  %s(1) does not exist, try --help\n&#x27;, bin);
-    } else if (err.code == &#x22;EACCES&#x22;) {
-      console.error(&#x27;\n  %s(1) not executable. try chmod or run with root\n&#x27;, bin);
+  proc.on('close', process.exit.bind(process));
+  proc.on('error', function(err) {
+    if (err.code == "ENOENT") {
+      console.error('\n  %s(1) does not exist, try --help\n', bin);
+    } else if (err.code == "EACCES") {
+      console.error('\n  %s(1) not executable. try chmod or run with root\n', bin);
     }
     process.exit(1);
   });
@@ -2567,7 +2560,7 @@ var result = this.parseArgs(this.args, parsed.unknown);
 
 // executable sub-commands
 var name = result.args[0];
-if (this._execs[name] &#x26;&#x26; typeof this._execs[name] != &#x22;function&#x22;) {
+if (this._execs[name] &amp;&amp; typeof this._execs[name] != "function") {
   return this.<span class="apidocCodeKeywordSpan">executeSubCommand</span>(argv, args, parsed.unknown);
 } else if (this.defaultExecutable) {
   // use the default subcommand
@@ -2624,19 +2617,19 @@ function make_red(txt) {
   var desc = [];
   if (this._description) {
     desc = [
-      &#x27;  &#x27; + this._description
-      , &#x27;&#x27;
+      '  ' + this._description
+      , ''
     ];
   }
 
   var cmdName = this._name;
   if (this._alias) {
-    cmdName = cmdName + &#x27;|&#x27; + this._alias;
+    cmdName = cmdName + '|' + this._alias;
   }
   var usage = [
-    &#x27;&#x27;
-    ,&#x27;  Usage: &#x27; + cmdName + &#x27; &#x27; + this.usage()
-    , &#x27;&#x27;
+    ''
+    ,'  Usage: ' + cmdName + ' ' + this.usage()
+    , ''
   ];
 
   var cmds = [];
@@ -2644,18 +2637,18 @@ function make_red(txt) {
   if (commandHelp) cmds = [commandHelp];
 
   var options = [
-    &#x27;  Options:&#x27;
-    , &#x27;&#x27;
-    , &#x27;&#x27; + this.optionHelp().replace(/^/gm, &#x27;    &#x27;)
-    , &#x27;&#x27;
-    , &#x27;&#x27;
+    '  Options:'
+    , ''
+    , '' + this.optionHelp().replace(/^/gm, '    ')
+    , ''
+    , ''
   ];
 
   return usage
     .concat(cmds)
     .concat(desc)
     .concat(options)
-    .join(&#x27;\n&#x27;);
+    .join('\n');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
@@ -2666,7 +2659,7 @@ Command.prototype.outputHelp = function(cb) {
    }
  }
  process.stdout.write(cb(this.<span class="apidocCodeKeywordSpan">helpInformation</span>()));
- this.emit(&#x27;--help&#x27;);
+ this.emit('--help');
 };
 
 /**
@@ -2701,11 +2694,11 @@ Command.prototype.optionHelp = function() {
 var width = this.<span class="apidocCodeKeywordSpan">largestOptionLength</span>();
 
 // Prepend the help information
-return [pad(&#x27;-h, --help&#x27;, width) + &#x27;  &#x27; + &#x27;output usage information&#x27;]
+return [pad('-h, --help', width) + '  ' + 'output usage information']
     .concat(this.options.map(function(option) {
-      return pad(option.flags, width) + &#x27;  &#x27; + option.description;
+      return pad(option.flags, width) + '  ' + option.description;
     }))
-    .join(&#x27;\n&#x27;);
+    .join('\n');
 ...</pre></li>
     </ul>
 
@@ -2720,7 +2713,7 @@ return [pad(&#x27;-h, --help&#x27;, width) + &#x27;  &#x27; + &#x27;output usage
     <ul>
     <li>description and source-code<pre class="apidocCodePre">missingArgument = function (name) {
   console.error();
-  console.error(&#x22;  error: missing required argument `%s&#x27;&#x22;, name);
+  console.error("  error: missing required argument `%s'", name);
   console.error();
   process.exit(1);
 }</pre></li>
@@ -2731,7 +2724,7 @@ return [pad(&#x27;-h, --help&#x27;, width) + &#x27;  &#x27; + &#x27;output usage
     if (parsed.args.length) args = parsed.args.concat(args);
 
     self._args.forEach(function(arg, i) {
-if (arg.required &#x26;&#x26; null == args[i]) {
+if (arg.required &amp;&amp; null == args[i]) {
   self.<span class="apidocCodeKeywordSpan">missingArgument</span>(arg.name);
 } else if (arg.variadic) {
   if (i !== self._args.length - 1) {
@@ -2767,7 +2760,7 @@ var self = this
   , name = camelcase(oname);
 
 // default as 3rd arg
-if (typeof fn != &#x27;function&#x27;) {
+if (typeof fn != 'function') {
   if (fn instanceof RegExp) {
     var regex = fn;
     fn = function(val, def) {
@@ -2789,23 +2782,23 @@ if (typeof fn != &#x27;function&#x27;) {
     , lastOpt
     , index;
 
-  for (var i = 0, len = args.length; i &#x3c; len; ++i) {
+  for (var i = 0, len = args.length; i &lt; len; ++i) {
     arg = args[i];
-    if (i &#x3e; 0) {
+    if (i &gt; 0) {
       lastOpt = this.optionFor(args[i-1]);
     }
 
-    if (arg === &#x27;--&#x27;) {
+    if (arg === '--') {
       // Honor option terminator
       ret = ret.concat(args.slice(i));
       break;
-    } else if (lastOpt &#x26;&#x26; lastOpt.required) {
+    } else if (lastOpt &amp;&amp; lastOpt.required) {
       ret.push(arg);
-    } else if (arg.length &#x3e; 1 &#x26;&#x26; &#x27;-&#x27; == arg[0] &#x26;&#x26; &#x27;-&#x27; != arg[1]) {
-      arg.slice(1).split(&#x27;&#x27;).forEach(function(c) {
-        ret.push(&#x27;-&#x27; + c);
+    } else if (arg.length &gt; 1 &amp;&amp; '-' == arg[0] &amp;&amp; '-' != arg[1]) {
+      arg.slice(1).split('').forEach(function(c) {
+        ret.push('-' + c);
       });
-    } else if (/^--/.test(arg) &#x26;&#x26; ~(index = arg.indexOf(&#x27;=&#x27;))) {
+    } else if (/^--/.test(arg) &amp;&amp; ~(index = arg.indexOf('='))) {
       ret.push(arg.slice(0, index), arg.slice(index + 1));
     } else {
       ret.push(arg);
@@ -2816,9 +2809,9 @@ if (typeof fn != &#x27;function&#x27;) {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 // github-style sub-commands with no sub-command
-if (this.executables &#x26;&#x26; argv.length &#x3c; 3 &#x26;&#x26; !this.defaultExecutable) {
+if (this.executables &amp;&amp; argv.length &lt; 3 &amp;&amp; !this.defaultExecutable) {
   // this user needs help
-  argv.push(&#x27;--help&#x27;);
+  argv.push('--help');
 }
 
 // process argv
@@ -2829,7 +2822,7 @@ var result = this.parseArgs(this.args, parsed.unknown);
 
 // executable sub-commands
 var name = result.args[0];
-if (this._execs[name] &#x26;&#x26; typeof this._execs[name] != &#x22;function&#x22;) {
+if (this._execs[name] &amp;&amp; typeof this._execs[name] != "function") {
 ...</pre></li>
     </ul>
 
@@ -2849,7 +2842,7 @@ if (this._execs[name] &#x26;&#x26; typeof this._execs[name] != &#x22;function&#x
     , name = camelcase(oname);
 
   // default as 3rd arg
-  if (typeof fn != &#x27;function&#x27;) {
+  if (typeof fn != 'function') {
     if (fn instanceof RegExp) {
       var regex = fn;
       fn = function(val, def) {
@@ -2863,7 +2856,7 @@ if (this._execs[name] &#x26;&#x26; typeof this._execs[name] != &#x22;function&#x
     }
   }
 
-  // preassign default value only for --no-*, [optional], or &#x3c;required&#x3e;
+  // preassign default value only for --no-*, [optional], or &lt;required&gt;
   if (false == option.bool || option.optional || option.required) {
     // when --no-* we make sure default is true
     if (false == option.bool) defaultValue = true;
@@ -2874,16 +2867,16 @@ if (this._execs[name] &#x26;&#x26; typeof this._execs[name] != &#x22;function&#x
   // register the option
   this.options.push(option);
 
-  // when it&#x27;s passed assign the value
+  // when it's passed assign the value
   // and conditionally invoke the callback
   this.on(oname, function(val) {
     // coercion
-    if (null !== val &#x26;&#x26; fn) val = fn(val, undefined === self[name]
+    if (null !== val &amp;&amp; fn) val = fn(val, undefined === self[name]
       ? defaultValue
       : self[name]);
 
     // unassigned or bool
-    if (&#x27;boolean&#x27; == typeof self[name] || &#x27;undefined&#x27; == typeof self[name]) {
+    if ('boolean' == typeof self[name] || 'undefined' == typeof self[name]) {
       // if no value, bool true, and we have a default, then use it!
       if (null == val) {
         self[name] = option.bool
@@ -2931,7 +2924,7 @@ Options with commander are defined with the `.<span class="apidocCodeKeywordSpan
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">optionFor = function (arg) {
-  for (var i = 0, len = this.options.length; i &#x3c; len; ++i) {
+  for (var i = 0, len = this.options.length; i &lt; len; ++i) {
     if (this.options[i].is(arg)) {
       return this.options[i];
     }
@@ -2942,17 +2935,17 @@ Options with commander are defined with the `.<span class="apidocCodeKeywordSpan
 , lastOpt
 , index;
 
-  for (var i = 0, len = args.length; i &#x3c; len; ++i) {
+  for (var i = 0, len = args.length; i &lt; len; ++i) {
 arg = args[i];
-if (i &#x3e; 0) {
+if (i &gt; 0) {
   lastOpt = this.<span class="apidocCodeKeywordSpan">optionFor</span>(args[i-1]);
 }
 
-if (arg === &#x27;--&#x27;) {
+if (arg === '--') {
   // Honor option terminator
   ret = ret.concat(args.slice(i));
   break;
-} else if (lastOpt &#x26;&#x26; lastOpt.required) {
+} else if (lastOpt &amp;&amp; lastOpt.required) {
 ...</pre></li>
     </ul>
 
@@ -2969,11 +2962,11 @@ if (arg === &#x27;--&#x27;) {
   var width = this.largestOptionLength();
 
   // Prepend the help information
-  return [pad(&#x27;-h, --help&#x27;, width) + &#x27;  &#x27; + &#x27;output usage information&#x27;]
+  return [pad('-h, --help', width) + '  ' + 'output usage information']
       .concat(this.options.map(function(option) {
-        return pad(option.flags, width) + &#x27;  &#x27; + option.description;
+        return pad(option.flags, width) + '  ' + option.description;
       }))
-      .join(&#x27;\n&#x27;);
+      .join('\n');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 var cmds = [];
@@ -2981,11 +2974,11 @@ var commandHelp = this.commandHelp();
 if (commandHelp) cmds = [commandHelp];
 
 var options = [
-  &#x27;  Options:&#x27;
-  , &#x27;&#x27;
-  , &#x27;&#x27; + this.<span class="apidocCodeKeywordSpan">optionHelp</span>().replace(/^/gm, &#x27;    &#x27;)
-  , &#x27;&#x27;
-  , &#x27;&#x27;
+  '  Options:'
+  , ''
+  , '' + this.<span class="apidocCodeKeywordSpan">optionHelp</span>().replace(/^/gm, '    ')
+  , ''
+  , ''
 ];
 
 return usage
@@ -3006,9 +2999,9 @@ return usage
     <li>description and source-code<pre class="apidocCodePre">optionMissingArgument = function (option, flag) {
   console.error();
   if (flag) {
-    console.error(&#x22;  error: option `%s&#x27; argument missing, got `%s&#x27;&#x22;, option.flags, flag);
+    console.error("  error: option `%s' argument missing, got `%s'", option.flags, flag);
   } else {
-    console.error(&#x22;  error: option `%s&#x27; argument missing&#x22;, option.flags);
+    console.error("  error: option `%s' argument missing", option.flags);
   }
   console.error();
   process.exit(1);
@@ -3026,7 +3019,7 @@ if (option) {
   // optional arg
   } else if (option.optional) {
     arg = argv[i+1];
-    if (null == arg || (&#x27;-&#x27; == arg[0] &#x26;&#x26; &#x27;-&#x27; != arg)) {
+    if (null == arg || ('-' == arg[0] &amp;&amp; '-' != arg)) {
       arg = null;
     } else {
 ...</pre></li>
@@ -3045,9 +3038,9 @@ if (option) {
   var result = {}
     , len = this.options.length;
 
-  for (var i = 0 ; i &#x3c; len; i++) {
+  for (var i = 0 ; i &lt; len; i++) {
     var key = camelcase(this.options[i].name());
-    result[key] = key === &#x27;version&#x27; ? this._version : this[key];
+    result[key] = key === 'version' ? this._version : this[key];
   }
   return result;
 }</pre></li>
@@ -3070,7 +3063,7 @@ if (option) {
     }
   }
   process.stdout.write(cb(this.helpInformation()));
-  this.emit(&#x27;--help&#x27;);
+  this.emit('--help');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 Examples:
@@ -3108,12 +3101,12 @@ If you want to display help by default (e.g. if no command was provided), you ca
   this.rawArgs = argv;
 
   // guess name
-  this._name = this._name || basename(argv[1], &#x27;.js&#x27;);
+  this._name = this._name || basename(argv[1], '.js');
 
   // github-style sub-commands with no sub-command
-  if (this.executables &#x26;&#x26; argv.length &#x3c; 3 &#x26;&#x26; !this.defaultExecutable) {
+  if (this.executables &amp;&amp; argv.length &lt; 3 &amp;&amp; !this.defaultExecutable) {
     // this user needs help
-    argv.push(&#x27;--help&#x27;);
+    argv.push('--help');
   }
 
   // process argv
@@ -3124,7 +3117,7 @@ If you want to display help by default (e.g. if no command was provided), you ca
 
   // executable sub-commands
   var name = result.args[0];
-  if (this._execs[name] &#x26;&#x26; typeof this._execs[name] != &#x22;function&#x22;) {
+  if (this._execs[name] &amp;&amp; typeof this._execs[name] != "function") {
     return this.executeSubCommand(argv, args, parsed.unknown);
   } else if (this.defaultExecutable) {
     // use the default subcommand
@@ -3137,18 +3130,18 @@ If you want to display help by default (e.g. if no command was provided), you ca
     <li>example usage<pre class="apidocCodePre">...
 
 program
-  .version(&#x27;0.0.1&#x27;)
-  .option(&#x27;-p, --peppers&#x27;, &#x27;Add peppers&#x27;)
-  .option(&#x27;-P, --pineapple&#x27;, &#x27;Add pineapple&#x27;)
-  .option(&#x27;-b, --bbq-sauce&#x27;, &#x27;Add bbq sauce&#x27;)
-  .option(&#x27;-c, --cheese [type]&#x27;, &#x27;Add the specified type of cheese [marble]&#x27;, &#x27;marble&#x27;)
+  .version('0.0.1')
+  .option('-p, --peppers', 'Add peppers')
+  .option('-P, --pineapple', 'Add pineapple')
+  .option('-b, --bbq-sauce', 'Add bbq sauce')
+  .option('-c, --cheese [type]', 'Add the specified type of cheese [marble]', 'marble')
   .<span class="apidocCodeKeywordSpan">parse</span>(process.argv);
 
-console.log(&#x27;you ordered a pizza with:&#x27;);
-if (program.peppers) console.log(&#x27;  - peppers&#x27;);
-if (program.pineapple) console.log(&#x27;  - pineapple&#x27;);
-if (program.bbqSauce) console.log(&#x27;  - bbq&#x27;);
-console.log(&#x27;  - %s cheese&#x27;, program.cheese);
+console.log('you ordered a pizza with:');
+if (program.peppers) console.log('  - peppers');
+if (program.pineapple) console.log('  - pineapple');
+if (program.bbqSauce) console.log('  - bbq');
+console.log('  - %s cheese', program.cheese);
 ```
 ...</pre></li>
     </ul>
@@ -3170,14 +3163,14 @@ console.log(&#x27;  - %s cheese&#x27;, program.cheese);
     if (this.listeners(name).length) {
       this.emit(args.shift(), args, unknown);
     } else {
-      this.emit(&#x27;*&#x27;, args);
+      this.emit('*', args);
     }
   } else {
     outputHelpIfNecessary(this, unknown);
 
     // If there were no args and we have unknown options,
     // then they are extraneous and we need to error.
-    if (unknown.length &#x3e; 0) {
+    if (unknown.length &gt; 0) {
       this.unknownOption(unknown[0]);
     }
   }
@@ -3185,7 +3178,7 @@ console.log(&#x27;  - %s cheese&#x27;, program.cheese);
   return this;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  argv.push(&#x27;--help&#x27;);
+  argv.push('--help');
 }
 
 // process argv
@@ -3196,7 +3189,7 @@ var result = this.<span class="apidocCodeKeywordSpan">parseArgs</span>(this.args
 
 // executable sub-commands
 var name = result.args[0];
-if (this._execs[name] &#x26;&#x26; typeof this._execs[name] != &#x22;function&#x22;) {
+if (this._execs[name] &amp;&amp; typeof this._execs[name] != "function") {
   return this.executeSubCommand(argv, args, parsed.unknown);
 } else if (this.defaultExecutable) {
   // use the default subcommand
@@ -3218,21 +3211,21 @@ if (this._execs[name] &#x26;&#x26; typeof this._execs[name] != &#x22;function&#x
   args.forEach(function(arg) {
     var argDetails = {
       required: false,
-      name: &#x27;&#x27;,
+      name: '',
       variadic: false
     };
 
     switch (arg[0]) {
-      case &#x27;&#x3c;&#x27;:
+      case '&lt;':
         argDetails.required = true;
         argDetails.name = arg.slice(1, -1);
         break;
-      case &#x27;[&#x27;:
+      case '[':
         argDetails.name = arg.slice(1, -1);
         break;
     }
 
-    if (argDetails.name.length &#x3e; 3 &#x26;&#x26; argDetails.name.slice(-3) === &#x27;...&#x27;) {
+    if (argDetails.name.length &gt; 3 &amp;&amp; argDetails.name.slice(-3) === '...') {
       argDetails.variadic = true;
       argDetails.name = argDetails.name.slice(0, -3);
     }
@@ -3280,11 +3273,11 @@ if (this._execs[name] &#x26;&#x26; typeof this._execs[name] != &#x22;function&#x
   var unknownOptions = [];
 
   // parse options
-  for (var i = 0; i &#x3c; len; ++i) {
+  for (var i = 0; i &lt; len; ++i) {
     arg = argv[i];
 
     // literal args after --
-    if (&#x27;--&#x27; == arg) {
+    if ('--' == arg) {
       literal = true;
       continue;
     }
@@ -3307,7 +3300,7 @@ if (this._execs[name] &#x26;&#x26; typeof this._execs[name] != &#x22;function&#x
       // optional arg
       } else if (option.optional) {
         arg = argv[i+1];
-        if (null == arg || (&#x27;-&#x27; == arg[0] &#x26;&#x26; &#x27;-&#x27; != arg)) {
+        if (null == arg || ('-' == arg[0] &amp;&amp; '-' != arg)) {
           arg = null;
         } else {
           ++i;
@@ -3321,13 +3314,13 @@ if (this._execs[name] &#x26;&#x26; typeof this._execs[name] != &#x22;function&#x
     }
 
     // looks like an option
-    if (arg.length &#x3e; 1 &#x26;&#x26; &#x27;-&#x27; == arg[0]) {
+    if (arg.length &gt; 1 &amp;&amp; '-' == arg[0]) {
       unknownOptions.push(arg);
 
       // If the next argument looks like it might be
       // an argument for this option, we pass it on.
-      // If it isn&#x27;t, then it&#x27;ll simply be ignored
-      if (argv[i+1] &#x26;&#x26; &#x27;-&#x27; != argv[i+1][0]) {
+      // If it isn't, then it'll simply be ignored
+      if (argv[i+1] &amp;&amp; '-' != argv[i+1][0]) {
         unknownOptions.push(argv[++i]);
       }
       continue;
@@ -3370,7 +3363,7 @@ outputHelpIfNecessary(self, parsed.unknown);
     <li>description and source-code<pre class="apidocCodePre">unknownOption = function (flag) {
   if (this._allowUnknownOption) return;
   console.error();
-  console.error(&#x22;  error: unknown option `%s&#x27;&#x22;, flag);
+  console.error("  error: unknown option `%s'", flag);
   console.error();
   process.exit(1);
 }</pre></li>
@@ -3381,7 +3374,7 @@ outputHelpIfNecessary(self, parsed.unknown);
 // If there are still any unknown options, then we simply
 // die, unless someone asked for help, in which case we give it
 // to them, and then we die.
-if (parsed.unknown.length &#x3e; 0) {
+if (parsed.unknown.length &gt; 0) {
   self.<span class="apidocCodeKeywordSpan">unknownOption</span>(parsed.unknown[0]);
 }
 
@@ -3389,7 +3382,7 @@ if (parsed.unknown.length &#x3e; 0) {
 if (parsed.args.length) args = parsed.args.concat(args);
 
 self._args.forEach(function(arg, i) {
-  if (arg.required &#x26;&#x26; null == args[i]) {
+  if (arg.required &amp;&amp; null == args[i]) {
 ...</pre></li>
     </ul>
 
@@ -3407,9 +3400,9 @@ self._args.forEach(function(arg, i) {
     return humanReadableArgName(arg);
   });
 
-  var usage = &#x27;[options]&#x27;
-    + (this.commands.length ? &#x27; [command]&#x27; : &#x27;&#x27;)
-    + (this._args.length ? &#x27; &#x27; + args.join(&#x27; &#x27;) : &#x27;&#x27;);
+  var usage = '[options]'
+    + (this.commands.length ? ' [command]' : '')
+    + (this._args.length ? ' ' + args.join(' ') : '');
 
   if (0 == arguments.length) return this._usage || usage;
   this._usage = str;
@@ -3423,15 +3416,15 @@ return total + 1;
 }
 
 program
-.version(&#x27;0.0.1&#x27;)
-.<span class="apidocCodeKeywordSpan">usage</span>(&#x27;[options] &#x3c;file ...&#x3e;&#x27;)
-.option(&#x27;-i, --integer &#x3c;n&#x3e;&#x27;, &#x27;An integer argument&#x27;, parseInt)
-.option(&#x27;-f, --float &#x3c;n&#x3e;&#x27;, &#x27;A float argument&#x27;, parseFloat)
-.option(&#x27;-r, --range &#x3c;a&#x3e;..&#x3c;b&#x3e;&#x27;, &#x27;A range&#x27;, range)
-.option(&#x27;-l, --list &#x3c;items&#x3e;&#x27;, &#x27;A list&#x27;, list)
-.option(&#x27;-o, --optional [value]&#x27;, &#x27;An optional value&#x27;)
-.option(&#x27;-c, --collect [value]&#x27;, &#x27;A repeatable value&#x27;, collect, [])
-.option(&#x27;-v, --verbose&#x27;, &#x27;A value that can be increased&#x27;, increaseVerbosity, 0)
+.version('0.0.1')
+.<span class="apidocCodeKeywordSpan">usage</span>('[options] &lt;file ...&gt;')
+.option('-i, --integer &lt;n&gt;', 'An integer argument', parseInt)
+.option('-f, --float &lt;n&gt;', 'A float argument', parseFloat)
+.option('-r, --range &lt;a&gt;..&lt;b&gt;', 'A range', range)
+.option('-l, --list &lt;items&gt;', 'A list', list)
+.option('-o, --optional [value]', 'An optional value')
+.option('-c, --collect [value]', 'A repeatable value', collect, [])
+.option('-v, --verbose', 'A value that can be increased', increaseVerbosity, 0)
 ...</pre></li>
     </ul>
 
@@ -3446,7 +3439,7 @@ program
     <ul>
     <li>description and source-code<pre class="apidocCodePre">variadicArgNotLast = function (name) {
   console.error();
-  console.error(&#x22;  error: variadic arguments must be last `%s&#x27;&#x22;, name);
+  console.error("  error: variadic arguments must be last `%s'", name);
   console.error();
   process.exit(1);
 }</pre></li>
@@ -3454,7 +3447,7 @@ program
 if (parsed.args.length) args = parsed.args.concat(args);
 
 self._args.forEach(function(arg, i) {
-  if (arg.required &#x26;&#x26; null == args[i]) {
+  if (arg.required &amp;&amp; null == args[i]) {
     self.missingArgument(arg.name);
   } else if (arg.variadic) {
     if (i !== self._args.length - 1) {
@@ -3481,10 +3474,10 @@ self._args.forEach(function(arg, i) {
     <li>description and source-code<pre class="apidocCodePre">version = function (str, flags) {
   if (0 == arguments.length) return this._version;
   this._version = str;
-  flags = flags || &#x27;-V, --version&#x27;;
-  this.option(flags, &#x27;output the version number&#x27;);
-  this.on(&#x27;version&#x27;, function() {
-    process.stdout.write(str + &#x27;\n&#x27;);
+  flags = flags || '-V, --version';
+  this.option(flags, 'output the version number');
+  this.on('version', function() {
+    process.stdout.write(str + '\n');
     process.exit(0);
   });
   return this;
@@ -3494,17 +3487,17 @@ self._args.forEach(function(arg, i) {
  * Module dependencies.
  */
 
-var program = require(&#x27;commander&#x27;);
+var program = require('commander');
 
 program
-  .<span class="apidocCodeKeywordSpan">version</span>(&#x27;0.0.1&#x27;)
-  .option(&#x27;-p, --peppers&#x27;, &#x27;Add peppers&#x27;)
-  .option(&#x27;-P, --pineapple&#x27;, &#x27;Add pineapple&#x27;)
-  .option(&#x27;-b, --bbq-sauce&#x27;, &#x27;Add bbq sauce&#x27;)
-  .option(&#x27;-c, --cheese [type]&#x27;, &#x27;Add the specified type of cheese [marble]&#x27;, &#x27;marble&#x27;)
+  .<span class="apidocCodeKeywordSpan">version</span>('0.0.1')
+  .option('-p, --peppers', 'Add peppers')
+  .option('-P, --pineapple', 'Add pineapple')
+  .option('-b, --bbq-sauce', 'Add bbq sauce')
+  .option('-c, --cheese [type]', 'Add the specified type of cheese [marble]', 'marble')
   .parse(process.argv);
 
-console.log(&#x27;you ordered a pizza with:&#x27;);
+console.log('you ordered a pizza with:');
 ...</pre></li>
     </ul>
 
@@ -3537,7 +3530,7 @@ console.log(&#x27;you ordered a pizza with:&#x27;);
     // If there are still any unknown options, then we simply
     // die, unless someone asked for help, in which case we give it
     // to them, and then we die.
-    if (parsed.unknown.length &#x3e; 0) {
+    if (parsed.unknown.length &gt; 0) {
       self.unknownOption(parsed.unknown[0]);
     }
 
@@ -3545,7 +3538,7 @@ console.log(&#x27;you ordered a pizza with:&#x27;);
     if (parsed.args.length) args = parsed.args.concat(args);
 
     self._args.forEach(function(arg, i) {
-      if (arg.required &#x26;&#x26; null == args[i]) {
+      if (arg.required &amp;&amp; null == args[i]) {
         self.missingArgument(arg.name);
       } else if (arg.variadic) {
         if (i !== self._args.length - 1) {
@@ -3568,7 +3561,7 @@ console.log(&#x27;you ordered a pizza with:&#x27;);
     fn.apply(self, args);
   };
   var parent = this.parent || this;
-  var name = parent === this ? &#x27;*&#x27; : this._name;
+  var name = parent === this ? '*' : this._name;
   parent.on(name, listener);
   if (this._alias) parent.on(this._alias, listener);
   return this;
@@ -3576,16 +3569,16 @@ console.log(&#x27;you ordered a pizza with:&#x27;);
     <li>example usage<pre class="apidocCodePre">...
  */
 
-var program = require(&#x27;commander&#x27;);
+var program = require('commander');
 
 program
-.version(&#x27;0.0.1&#x27;)
-.command(&#x27;rmdir &#x3c;dir&#x3e; [otherDirs...]&#x27;)
+.version('0.0.1')
+.command('rmdir &lt;dir&gt; [otherDirs...]')
 .<span class="apidocCodeKeywordSpan">action</span>(function (dir, otherDirs) {
-  console.log(&#x27;rmdir %s&#x27;, dir);
+  console.log('rmdir %s', dir);
   if (otherDirs) {
     otherDirs.forEach(function (oDir) {
-      console.log(&#x27;rmdir %s&#x27;, oDir);
+      console.log('rmdir %s', oDir);
     });
   }
 });
@@ -3607,7 +3600,7 @@ program
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">addImplicitHelpCommand = function () {
-  this.command(&#x27;help [cmd]&#x27;, &#x27;display help for [cmd]&#x27;);
+  this.command('help [cmd]', 'display help for [cmd]');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
  * @param {Array} argv
@@ -3623,7 +3616,7 @@ if (this.executables) this.<span class="apidocCodeKeywordSpan">addImplicitHelpCo
 this.rawArgs = argv;
 
 // guess name
-this._name = this._name || basename(argv[1], &#x27;.js&#x27;);
+this._name = this._name || basename(argv[1], '.js');
 ...</pre></li>
     </ul>
 
@@ -3647,20 +3640,20 @@ this._name = this._name || basename(argv[1], &#x27;.js&#x27;);
   return this;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  var mode = options.setup_mode || &#x22;normal&#x22;;
-  env = env || &#x27;all&#x27;;
-  console.log(&#x27;setup for %s env(s) with %s mode&#x27;, env, mode);
+  var mode = options.setup_mode || "normal";
+  env = env || 'all';
+  console.log('setup for %s env(s) with %s mode', env, mode);
 });
 
 program
-.command(&#x27;exec &#x3c;cmd&#x3e;&#x27;)
-.<span class="apidocCodeKeywordSpan">alias</span>(&#x27;ex&#x27;)
-.description(&#x27;execute the given remote cmd&#x27;)
-.option(&#x22;-e, --exec_mode &#x3c;mode&#x3e;&#x22;, &#x22;Which exec mode to use&#x22;)
+.command('exec &lt;cmd&gt;')
+.<span class="apidocCodeKeywordSpan">alias</span>('ex')
+.description('execute the given remote cmd')
+.option("-e, --exec_mode &lt;mode&gt;", "Which exec mode to use")
 .action(function(cmd, options){
-  console.log(&#x27;exec &#x22;%s&#x22; using %s mode&#x27;, cmd, options.exec_mode);
-}).on(&#x27;--help&#x27;, function() {
-  console.log(&#x27;  Examples:&#x27;);
+  console.log('exec "%s" using %s mode', cmd, options.exec_mode);
+}).on('--help', function() {
+  console.log('  Examples:');
   console.log();
 ...</pre></li>
     </ul>
@@ -3729,16 +3722,16 @@ program
  * Module dependencies.
  */
 
-var program = require(&#x27;commander&#x27;);
+var program = require('commander');
 
 program
-.version(&#x27;0.0.1&#x27;)
-.<span class="apidocCodeKeywordSpan">command</span>(&#x27;rmdir &#x3c;dir&#x3e; [otherDirs...]&#x27;)
+.version('0.0.1')
+.<span class="apidocCodeKeywordSpan">command</span>('rmdir &lt;dir&gt; [otherDirs...]')
 .action(function (dir, otherDirs) {
-  console.log(&#x27;rmdir %s&#x27;, dir);
+  console.log('rmdir %s', dir);
   if (otherDirs) {
     otherDirs.forEach(function (oDir) {
-      console.log(&#x27;rmdir %s&#x27;, oDir);
+      console.log('rmdir %s', oDir);
     });
   }
 ...</pre></li>
@@ -3759,20 +3752,20 @@ program
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">commandHelp = function () {
-  if (!this.commands.length) return &#x27;&#x27;;
+  if (!this.commands.length) return '';
 
   var commands = this.commands.filter(function(cmd) {
     return !cmd._noHelp;
   }).map(function(cmd) {
     var args = cmd._args.map(function(arg) {
       return humanReadableArgName(arg);
-    }).join(&#x27; &#x27;);
+    }).join(' ');
 
     return [
       cmd._name
-        + (cmd._alias ? &#x27;|&#x27; + cmd._alias : &#x27;&#x27;)
-        + (cmd.options.length ? &#x27; [options]&#x27; : &#x27;&#x27;)
-        + &#x27; &#x27; + args
+        + (cmd._alias ? '|' + cmd._alias : '')
+        + (cmd.options.length ? ' [options]' : '')
+        + ' ' + args
       , cmd.description()
     ];
   });
@@ -3782,21 +3775,21 @@ program
   }, 0);
 
   return [
-    &#x27;&#x27;
-    , &#x27;  Commands:&#x27;
-    , &#x27;&#x27;
+    ''
+    , '  Commands:'
+    , ''
     , commands.map(function(cmd) {
-      var desc = cmd[1] ? &#x27;  &#x27; + cmd[1] : &#x27;&#x27;;
+      var desc = cmd[1] ? '  ' + cmd[1] : '';
       return pad(cmd[0], width) + desc;
-    }).join(&#x27;\n&#x27;).replace(/^/gm, &#x27;    &#x27;)
-    , &#x27;&#x27;
-  ].join(&#x27;\n&#x27;);
+    }).join('\n').replace(/^/gm, '    ')
+    , ''
+  ].join('\n');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 var usage = [
-  &#x27;&#x27;
-  ,&#x27;  Usage: &#x27; + cmdName + &#x27; &#x27; + this.usage()
-  , &#x27;&#x27;
+  ''
+  ,'  Usage: ' + cmdName + ' ' + this.usage()
+  , ''
 ];
 
 var cmds = [];
@@ -3804,10 +3797,10 @@ var commandHelp = this.<span class="apidocCodeKeywordSpan">commandHelp</span>();
 if (commandHelp) cmds = [commandHelp];
 
 var options = [
-  &#x27;  Options:&#x27;
-  , &#x27;&#x27;
-  , &#x27;&#x27; + this.optionHelp().replace(/^/gm, &#x27;    &#x27;)
-  , &#x27;&#x27;
+  '  Options:'
+  , ''
+  , '' + this.optionHelp().replace(/^/gm, '    ')
+  , ''
 ...</pre></li>
     </ul>
 
@@ -3831,19 +3824,19 @@ var options = [
   return this;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-.version(&#x27;0.0.1&#x27;)
-.option(&#x27;-C, --chdir &#x3c;path&#x3e;&#x27;, &#x27;change the working directory&#x27;)
-.option(&#x27;-c, --config &#x3c;path&#x3e;&#x27;, &#x27;set config path. defaults to ./deploy.conf&#x27;)
-.option(&#x27;-T, --no-tests&#x27;, &#x27;ignore test hook&#x27;)
+.version('0.0.1')
+.option('-C, --chdir &lt;path&gt;', 'change the working directory')
+.option('-c, --config &lt;path&gt;', 'set config path. defaults to ./deploy.conf')
+.option('-T, --no-tests', 'ignore test hook')
 
 program
-.command(&#x27;setup [env]&#x27;)
-.<span class="apidocCodeKeywordSpan">description</span>(&#x27;run setup commands for all envs&#x27;)
-.option(&#x22;-s, --setup_mode [mode]&#x22;, &#x22;Which setup mode to use&#x22;)
+.command('setup [env]')
+.<span class="apidocCodeKeywordSpan">description</span>('run setup commands for all envs')
+.option("-s, --setup_mode [mode]", "Which setup mode to use")
 .action(function(env, options){
-  var mode = options.setup_mode || &#x22;normal&#x22;;
-  env = env || &#x27;all&#x27;;
-  console.log(&#x27;setup for %s env(s) with %s mode&#x27;, env, mode);
+  var mode = options.setup_mode || "normal";
+  env = env || 'all';
+  console.log('setup for %s env(s) with %s mode', env, mode);
 });
 ...</pre></li>
     </ul>
@@ -3866,18 +3859,18 @@ program
   args = args.concat(unknown);
 
   if (!args.length) this.help();
-  if (&#x27;help&#x27; == args[0] &#x26;&#x26; 1 == args.length) this.help();
+  if ('help' == args[0] &amp;&amp; 1 == args.length) this.help();
 
-  // &#x3c;cmd&#x3e; --help
-  if (&#x27;help&#x27; == args[0]) {
+  // &lt;cmd&gt; --help
+  if ('help' == args[0]) {
     args[0] = args[1];
-    args[1] = &#x27;--help&#x27;;
+    args[1] = '--help';
   }
 
   // executable
   var f = argv[1];
   // name of the subcommand, link `pm-install`
-  var bin = basename(f, &#x27;.js&#x27;) + &#x27;-&#x27; + args[0];
+  var bin = basename(f, '.js') + '-' + args[0];
 
 
   // In case of globally installed, get the base dir where executable
@@ -3886,18 +3879,18 @@ program
     , link = readlink(f);
 
   // when symbolink is relative path
-  if (link !== f &#x26;&#x26; link.charAt(0) !== &#x27;/&#x27;) {
+  if (link !== f &amp;&amp; link.charAt(0) !== '/') {
     link = path.join(dirname(f), link)
   }
   baseDir = dirname(link);
 
-  // prefer local `./&#x3c;bin&#x3e;` to bin in the $PATH
+  // prefer local `./&lt;bin&gt;` to bin in the $PATH
   var localBin = path.join(baseDir, bin);
 
   // whether bin file is a js script with explicit `.js` extension
   var isExplicitJS = false;
-  if (exists(localBin + &#x27;.js&#x27;)) {
-    bin = localBin + &#x27;.js&#x27;;
+  if (exists(localBin + '.js')) {
+    bin = localBin + '.js';
     isExplicitJS = true;
   } else if (exists(localBin)) {
     bin = localBin;
@@ -3906,27 +3899,27 @@ program
   args = args.slice(1);
 
   var proc;
-  if (process.platform !== &#x27;win32&#x27;) {
+  if (process.platform !== 'win32') {
     if (isExplicitJS) {
       args.unshift(localBin);
       // add executable arguments to spawn
       args = (process.execArgv || []).concat(args);
 
-      proc = spawn(&#x27;node&#x27;, args, { stdio: &#x27;inherit&#x27;, customFds: [0, 1, 2] });
+      proc = spawn('node', args, { stdio: 'inherit', customFds: [0, 1, 2] });
     } else {
-      proc = spawn(bin, args, { stdio: &#x27;inherit&#x27;, customFds: [0, 1, 2] });
+      proc = spawn(bin, args, { stdio: 'inherit', customFds: [0, 1, 2] });
     }
   } else {
     args.unshift(localBin);
-    proc = spawn(process.execPath, args, { stdio: &#x27;inherit&#x27;});
+    proc = spawn(process.execPath, args, { stdio: 'inherit'});
   }
 
-  proc.on(&#x27;close&#x27;, process.exit.bind(process));
-  proc.on(&#x27;error&#x27;, function(err) {
-    if (err.code == &#x22;ENOENT&#x22;) {
-      console.error(&#x27;\n  %s(1) does not exist, try --help\n&#x27;, bin);
-    } else if (err.code == &#x22;EACCES&#x22;) {
-      console.error(&#x27;\n  %s(1) not executable. try chmod or run with root\n&#x27;, bin);
+  proc.on('close', process.exit.bind(process));
+  proc.on('error', function(err) {
+    if (err.code == "ENOENT") {
+      console.error('\n  %s(1) does not exist, try --help\n', bin);
+    } else if (err.code == "EACCES") {
+      console.error('\n  %s(1) not executable. try chmod or run with root\n', bin);
     }
     process.exit(1);
   });
@@ -3941,7 +3934,7 @@ var result = this.parseArgs(this.args, parsed.unknown);
 
 // executable sub-commands
 var name = result.args[0];
-if (this._execs[name] &#x26;&#x26; typeof this._execs[name] != &#x22;function&#x22;) {
+if (this._execs[name] &amp;&amp; typeof this._execs[name] != "function") {
   return this.<span class="apidocCodeKeywordSpan">executeSubCommand</span>(argv, args, parsed.unknown);
 } else if (this.defaultExecutable) {
   // use the default subcommand
@@ -4008,19 +4001,19 @@ function make_red(txt) {
   var desc = [];
   if (this._description) {
     desc = [
-      &#x27;  &#x27; + this._description
-      , &#x27;&#x27;
+      '  ' + this._description
+      , ''
     ];
   }
 
   var cmdName = this._name;
   if (this._alias) {
-    cmdName = cmdName + &#x27;|&#x27; + this._alias;
+    cmdName = cmdName + '|' + this._alias;
   }
   var usage = [
-    &#x27;&#x27;
-    ,&#x27;  Usage: &#x27; + cmdName + &#x27; &#x27; + this.usage()
-    , &#x27;&#x27;
+    ''
+    ,'  Usage: ' + cmdName + ' ' + this.usage()
+    , ''
   ];
 
   var cmds = [];
@@ -4028,18 +4021,18 @@ function make_red(txt) {
   if (commandHelp) cmds = [commandHelp];
 
   var options = [
-    &#x27;  Options:&#x27;
-    , &#x27;&#x27;
-    , &#x27;&#x27; + this.optionHelp().replace(/^/gm, &#x27;    &#x27;)
-    , &#x27;&#x27;
-    , &#x27;&#x27;
+    '  Options:'
+    , ''
+    , '' + this.optionHelp().replace(/^/gm, '    ')
+    , ''
+    , ''
   ];
 
   return usage
     .concat(cmds)
     .concat(desc)
     .concat(options)
-    .join(&#x27;\n&#x27;);
+    .join('\n');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
@@ -4050,7 +4043,7 @@ Command.prototype.outputHelp = function(cb) {
    }
  }
  process.stdout.write(cb(this.<span class="apidocCodeKeywordSpan">helpInformation</span>()));
- this.emit(&#x27;--help&#x27;);
+ this.emit('--help');
 };
 
 /**
@@ -4090,11 +4083,11 @@ Command.prototype.optionHelp = function() {
 var width = this.<span class="apidocCodeKeywordSpan">largestOptionLength</span>();
 
 // Prepend the help information
-return [pad(&#x27;-h, --help&#x27;, width) + &#x27;  &#x27; + &#x27;output usage information&#x27;]
+return [pad('-h, --help', width) + '  ' + 'output usage information']
     .concat(this.options.map(function(option) {
-      return pad(option.flags, width) + &#x27;  &#x27; + option.description;
+      return pad(option.flags, width) + '  ' + option.description;
     }))
-    .join(&#x27;\n&#x27;);
+    .join('\n');
 ...</pre></li>
     </ul>
 
@@ -4114,7 +4107,7 @@ return [pad(&#x27;-h, --help&#x27;, width) + &#x27;  &#x27; + &#x27;output usage
     <ul>
     <li>description and source-code<pre class="apidocCodePre">missingArgument = function (name) {
   console.error();
-  console.error(&#x22;  error: missing required argument `%s&#x27;&#x22;, name);
+  console.error("  error: missing required argument `%s'", name);
   console.error();
   process.exit(1);
 }</pre></li>
@@ -4125,7 +4118,7 @@ return [pad(&#x27;-h, --help&#x27;, width) + &#x27;  &#x27; + &#x27;output usage
     if (parsed.args.length) args = parsed.args.concat(args);
 
     self._args.forEach(function(arg, i) {
-if (arg.required &#x26;&#x26; null == args[i]) {
+if (arg.required &amp;&amp; null == args[i]) {
   self.<span class="apidocCodeKeywordSpan">missingArgument</span>(arg.name);
 } else if (arg.variadic) {
   if (i !== self._args.length - 1) {
@@ -4162,23 +4155,23 @@ if (arg.required &#x26;&#x26; null == args[i]) {
     , lastOpt
     , index;
 
-  for (var i = 0, len = args.length; i &#x3c; len; ++i) {
+  for (var i = 0, len = args.length; i &lt; len; ++i) {
     arg = args[i];
-    if (i &#x3e; 0) {
+    if (i &gt; 0) {
       lastOpt = this.optionFor(args[i-1]);
     }
 
-    if (arg === &#x27;--&#x27;) {
+    if (arg === '--') {
       // Honor option terminator
       ret = ret.concat(args.slice(i));
       break;
-    } else if (lastOpt &#x26;&#x26; lastOpt.required) {
+    } else if (lastOpt &amp;&amp; lastOpt.required) {
       ret.push(arg);
-    } else if (arg.length &#x3e; 1 &#x26;&#x26; &#x27;-&#x27; == arg[0] &#x26;&#x26; &#x27;-&#x27; != arg[1]) {
-      arg.slice(1).split(&#x27;&#x27;).forEach(function(c) {
-        ret.push(&#x27;-&#x27; + c);
+    } else if (arg.length &gt; 1 &amp;&amp; '-' == arg[0] &amp;&amp; '-' != arg[1]) {
+      arg.slice(1).split('').forEach(function(c) {
+        ret.push('-' + c);
       });
-    } else if (/^--/.test(arg) &#x26;&#x26; ~(index = arg.indexOf(&#x27;=&#x27;))) {
+    } else if (/^--/.test(arg) &amp;&amp; ~(index = arg.indexOf('='))) {
       ret.push(arg.slice(0, index), arg.slice(index + 1));
     } else {
       ret.push(arg);
@@ -4189,9 +4182,9 @@ if (arg.required &#x26;&#x26; null == args[i]) {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 // github-style sub-commands with no sub-command
-if (this.executables &#x26;&#x26; argv.length &#x3c; 3 &#x26;&#x26; !this.defaultExecutable) {
+if (this.executables &amp;&amp; argv.length &lt; 3 &amp;&amp; !this.defaultExecutable) {
   // this user needs help
-  argv.push(&#x27;--help&#x27;);
+  argv.push('--help');
 }
 
 // process argv
@@ -4202,7 +4195,7 @@ var result = this.parseArgs(this.args, parsed.unknown);
 
 // executable sub-commands
 var name = result.args[0];
-if (this._execs[name] &#x26;&#x26; typeof this._execs[name] != &#x22;function&#x22;) {
+if (this._execs[name] &amp;&amp; typeof this._execs[name] != "function") {
 ...</pre></li>
     </ul>
 
@@ -4227,7 +4220,7 @@ if (this._execs[name] &#x26;&#x26; typeof this._execs[name] != &#x22;function&#x
     , name = camelcase(oname);
 
   // default as 3rd arg
-  if (typeof fn != &#x27;function&#x27;) {
+  if (typeof fn != 'function') {
     if (fn instanceof RegExp) {
       var regex = fn;
       fn = function(val, def) {
@@ -4241,7 +4234,7 @@ if (this._execs[name] &#x26;&#x26; typeof this._execs[name] != &#x22;function&#x
     }
   }
 
-  // preassign default value only for --no-*, [optional], or &#x3c;required&#x3e;
+  // preassign default value only for --no-*, [optional], or &lt;required&gt;
   if (false == option.bool || option.optional || option.required) {
     // when --no-* we make sure default is true
     if (false == option.bool) defaultValue = true;
@@ -4252,16 +4245,16 @@ if (this._execs[name] &#x26;&#x26; typeof this._execs[name] != &#x22;function&#x
   // register the option
   this.options.push(option);
 
-  // when it&#x27;s passed assign the value
+  // when it's passed assign the value
   // and conditionally invoke the callback
   this.on(oname, function(val) {
     // coercion
-    if (null !== val &#x26;&#x26; fn) val = fn(val, undefined === self[name]
+    if (null !== val &amp;&amp; fn) val = fn(val, undefined === self[name]
       ? defaultValue
       : self[name]);
 
     // unassigned or bool
-    if (&#x27;boolean&#x27; == typeof self[name] || &#x27;undefined&#x27; == typeof self[name]) {
+    if ('boolean' == typeof self[name] || 'undefined' == typeof self[name]) {
       // if no value, bool true, and we have a default, then use it!
       if (null == val) {
         self[name] = option.bool
@@ -4314,7 +4307,7 @@ Options with commander are defined with the `.<span class="apidocCodeKeywordSpan
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">optionFor = function (arg) {
-  for (var i = 0, len = this.options.length; i &#x3c; len; ++i) {
+  for (var i = 0, len = this.options.length; i &lt; len; ++i) {
     if (this.options[i].is(arg)) {
       return this.options[i];
     }
@@ -4325,17 +4318,17 @@ Options with commander are defined with the `.<span class="apidocCodeKeywordSpan
 , lastOpt
 , index;
 
-  for (var i = 0, len = args.length; i &#x3c; len; ++i) {
+  for (var i = 0, len = args.length; i &lt; len; ++i) {
 arg = args[i];
-if (i &#x3e; 0) {
+if (i &gt; 0) {
   lastOpt = this.<span class="apidocCodeKeywordSpan">optionFor</span>(args[i-1]);
 }
 
-if (arg === &#x27;--&#x27;) {
+if (arg === '--') {
   // Honor option terminator
   ret = ret.concat(args.slice(i));
   break;
-} else if (lastOpt &#x26;&#x26; lastOpt.required) {
+} else if (lastOpt &amp;&amp; lastOpt.required) {
 ...</pre></li>
     </ul>
 
@@ -4357,11 +4350,11 @@ if (arg === &#x27;--&#x27;) {
   var width = this.largestOptionLength();
 
   // Prepend the help information
-  return [pad(&#x27;-h, --help&#x27;, width) + &#x27;  &#x27; + &#x27;output usage information&#x27;]
+  return [pad('-h, --help', width) + '  ' + 'output usage information']
       .concat(this.options.map(function(option) {
-        return pad(option.flags, width) + &#x27;  &#x27; + option.description;
+        return pad(option.flags, width) + '  ' + option.description;
       }))
-      .join(&#x27;\n&#x27;);
+      .join('\n');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 var cmds = [];
@@ -4369,11 +4362,11 @@ var commandHelp = this.commandHelp();
 if (commandHelp) cmds = [commandHelp];
 
 var options = [
-  &#x27;  Options:&#x27;
-  , &#x27;&#x27;
-  , &#x27;&#x27; + this.<span class="apidocCodeKeywordSpan">optionHelp</span>().replace(/^/gm, &#x27;    &#x27;)
-  , &#x27;&#x27;
-  , &#x27;&#x27;
+  '  Options:'
+  , ''
+  , '' + this.<span class="apidocCodeKeywordSpan">optionHelp</span>().replace(/^/gm, '    ')
+  , ''
+  , ''
 ];
 
 return usage
@@ -4399,9 +4392,9 @@ return usage
     <li>description and source-code<pre class="apidocCodePre">optionMissingArgument = function (option, flag) {
   console.error();
   if (flag) {
-    console.error(&#x22;  error: option `%s&#x27; argument missing, got `%s&#x27;&#x22;, option.flags, flag);
+    console.error("  error: option `%s' argument missing, got `%s'", option.flags, flag);
   } else {
-    console.error(&#x22;  error: option `%s&#x27; argument missing&#x22;, option.flags);
+    console.error("  error: option `%s' argument missing", option.flags);
   }
   console.error();
   process.exit(1);
@@ -4419,7 +4412,7 @@ if (option) {
   // optional arg
   } else if (option.optional) {
     arg = argv[i+1];
-    if (null == arg || (&#x27;-&#x27; == arg[0] &#x26;&#x26; &#x27;-&#x27; != arg)) {
+    if (null == arg || ('-' == arg[0] &amp;&amp; '-' != arg)) {
       arg = null;
     } else {
 ...</pre></li>
@@ -4443,9 +4436,9 @@ if (option) {
   var result = {}
     , len = this.options.length;
 
-  for (var i = 0 ; i &#x3c; len; i++) {
+  for (var i = 0 ; i &lt; len; i++) {
     var key = camelcase(this.options[i].name());
-    result[key] = key === &#x27;version&#x27; ? this._version : this[key];
+    result[key] = key === 'version' ? this._version : this[key];
   }
   return result;
 }</pre></li>
@@ -4473,7 +4466,7 @@ if (option) {
     }
   }
   process.stdout.write(cb(this.helpInformation()));
-  this.emit(&#x27;--help&#x27;);
+  this.emit('--help');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 Examples:
@@ -4516,12 +4509,12 @@ If you want to display help by default (e.g. if no command was provided), you ca
   this.rawArgs = argv;
 
   // guess name
-  this._name = this._name || basename(argv[1], &#x27;.js&#x27;);
+  this._name = this._name || basename(argv[1], '.js');
 
   // github-style sub-commands with no sub-command
-  if (this.executables &#x26;&#x26; argv.length &#x3c; 3 &#x26;&#x26; !this.defaultExecutable) {
+  if (this.executables &amp;&amp; argv.length &lt; 3 &amp;&amp; !this.defaultExecutable) {
     // this user needs help
-    argv.push(&#x27;--help&#x27;);
+    argv.push('--help');
   }
 
   // process argv
@@ -4532,7 +4525,7 @@ If you want to display help by default (e.g. if no command was provided), you ca
 
   // executable sub-commands
   var name = result.args[0];
-  if (this._execs[name] &#x26;&#x26; typeof this._execs[name] != &#x22;function&#x22;) {
+  if (this._execs[name] &amp;&amp; typeof this._execs[name] != "function") {
     return this.executeSubCommand(argv, args, parsed.unknown);
   } else if (this.defaultExecutable) {
     // use the default subcommand
@@ -4545,18 +4538,18 @@ If you want to display help by default (e.g. if no command was provided), you ca
     <li>example usage<pre class="apidocCodePre">...
 
 program
-  .version(&#x27;0.0.1&#x27;)
-  .option(&#x27;-p, --peppers&#x27;, &#x27;Add peppers&#x27;)
-  .option(&#x27;-P, --pineapple&#x27;, &#x27;Add pineapple&#x27;)
-  .option(&#x27;-b, --bbq-sauce&#x27;, &#x27;Add bbq sauce&#x27;)
-  .option(&#x27;-c, --cheese [type]&#x27;, &#x27;Add the specified type of cheese [marble]&#x27;, &#x27;marble&#x27;)
+  .version('0.0.1')
+  .option('-p, --peppers', 'Add peppers')
+  .option('-P, --pineapple', 'Add pineapple')
+  .option('-b, --bbq-sauce', 'Add bbq sauce')
+  .option('-c, --cheese [type]', 'Add the specified type of cheese [marble]', 'marble')
   .<span class="apidocCodeKeywordSpan">parse</span>(process.argv);
 
-console.log(&#x27;you ordered a pizza with:&#x27;);
-if (program.peppers) console.log(&#x27;  - peppers&#x27;);
-if (program.pineapple) console.log(&#x27;  - pineapple&#x27;);
-if (program.bbqSauce) console.log(&#x27;  - bbq&#x27;);
-console.log(&#x27;  - %s cheese&#x27;, program.cheese);
+console.log('you ordered a pizza with:');
+if (program.peppers) console.log('  - peppers');
+if (program.pineapple) console.log('  - pineapple');
+if (program.bbqSauce) console.log('  - bbq');
+console.log('  - %s cheese', program.cheese);
 ```
 ...</pre></li>
     </ul>
@@ -4583,14 +4576,14 @@ console.log(&#x27;  - %s cheese&#x27;, program.cheese);
     if (this.listeners(name).length) {
       this.emit(args.shift(), args, unknown);
     } else {
-      this.emit(&#x27;*&#x27;, args);
+      this.emit('*', args);
     }
   } else {
     outputHelpIfNecessary(this, unknown);
 
     // If there were no args and we have unknown options,
     // then they are extraneous and we need to error.
-    if (unknown.length &#x3e; 0) {
+    if (unknown.length &gt; 0) {
       this.unknownOption(unknown[0]);
     }
   }
@@ -4598,7 +4591,7 @@ console.log(&#x27;  - %s cheese&#x27;, program.cheese);
   return this;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  argv.push(&#x27;--help&#x27;);
+  argv.push('--help');
 }
 
 // process argv
@@ -4609,7 +4602,7 @@ var result = this.<span class="apidocCodeKeywordSpan">parseArgs</span>(this.args
 
 // executable sub-commands
 var name = result.args[0];
-if (this._execs[name] &#x26;&#x26; typeof this._execs[name] != &#x22;function&#x22;) {
+if (this._execs[name] &amp;&amp; typeof this._execs[name] != "function") {
   return this.executeSubCommand(argv, args, parsed.unknown);
 } else if (this.defaultExecutable) {
   // use the default subcommand
@@ -4636,21 +4629,21 @@ if (this._execs[name] &#x26;&#x26; typeof this._execs[name] != &#x22;function&#x
   args.forEach(function(arg) {
     var argDetails = {
       required: false,
-      name: &#x27;&#x27;,
+      name: '',
       variadic: false
     };
 
     switch (arg[0]) {
-      case &#x27;&#x3c;&#x27;:
+      case '&lt;':
         argDetails.required = true;
         argDetails.name = arg.slice(1, -1);
         break;
-      case &#x27;[&#x27;:
+      case '[':
         argDetails.name = arg.slice(1, -1);
         break;
     }
 
-    if (argDetails.name.length &#x3e; 3 &#x26;&#x26; argDetails.name.slice(-3) === &#x27;...&#x27;) {
+    if (argDetails.name.length &gt; 3 &amp;&amp; argDetails.name.slice(-3) === '...') {
       argDetails.variadic = true;
       argDetails.name = argDetails.name.slice(0, -3);
     }
@@ -4703,11 +4696,11 @@ if (this._execs[name] &#x26;&#x26; typeof this._execs[name] != &#x22;function&#x
   var unknownOptions = [];
 
   // parse options
-  for (var i = 0; i &#x3c; len; ++i) {
+  for (var i = 0; i &lt; len; ++i) {
     arg = argv[i];
 
     // literal args after --
-    if (&#x27;--&#x27; == arg) {
+    if ('--' == arg) {
       literal = true;
       continue;
     }
@@ -4730,7 +4723,7 @@ if (this._execs[name] &#x26;&#x26; typeof this._execs[name] != &#x22;function&#x
       // optional arg
       } else if (option.optional) {
         arg = argv[i+1];
-        if (null == arg || (&#x27;-&#x27; == arg[0] &#x26;&#x26; &#x27;-&#x27; != arg)) {
+        if (null == arg || ('-' == arg[0] &amp;&amp; '-' != arg)) {
           arg = null;
         } else {
           ++i;
@@ -4744,13 +4737,13 @@ if (this._execs[name] &#x26;&#x26; typeof this._execs[name] != &#x22;function&#x
     }
 
     // looks like an option
-    if (arg.length &#x3e; 1 &#x26;&#x26; &#x27;-&#x27; == arg[0]) {
+    if (arg.length &gt; 1 &amp;&amp; '-' == arg[0]) {
       unknownOptions.push(arg);
 
       // If the next argument looks like it might be
       // an argument for this option, we pass it on.
-      // If it isn&#x27;t, then it&#x27;ll simply be ignored
-      if (argv[i+1] &#x26;&#x26; &#x27;-&#x27; != argv[i+1][0]) {
+      // If it isn't, then it'll simply be ignored
+      if (argv[i+1] &amp;&amp; '-' != argv[i+1][0]) {
         unknownOptions.push(argv[++i]);
       }
       continue;
@@ -4798,7 +4791,7 @@ outputHelpIfNecessary(self, parsed.unknown);
     <li>description and source-code<pre class="apidocCodePre">unknownOption = function (flag) {
   if (this._allowUnknownOption) return;
   console.error();
-  console.error(&#x22;  error: unknown option `%s&#x27;&#x22;, flag);
+  console.error("  error: unknown option `%s'", flag);
   console.error();
   process.exit(1);
 }</pre></li>
@@ -4809,7 +4802,7 @@ outputHelpIfNecessary(self, parsed.unknown);
 // If there are still any unknown options, then we simply
 // die, unless someone asked for help, in which case we give it
 // to them, and then we die.
-if (parsed.unknown.length &#x3e; 0) {
+if (parsed.unknown.length &gt; 0) {
   self.<span class="apidocCodeKeywordSpan">unknownOption</span>(parsed.unknown[0]);
 }
 
@@ -4817,7 +4810,7 @@ if (parsed.unknown.length &#x3e; 0) {
 if (parsed.args.length) args = parsed.args.concat(args);
 
 self._args.forEach(function(arg, i) {
-  if (arg.required &#x26;&#x26; null == args[i]) {
+  if (arg.required &amp;&amp; null == args[i]) {
 ...</pre></li>
     </ul>
 
@@ -4840,9 +4833,9 @@ self._args.forEach(function(arg, i) {
     return humanReadableArgName(arg);
   });
 
-  var usage = &#x27;[options]&#x27;
-    + (this.commands.length ? &#x27; [command]&#x27; : &#x27;&#x27;)
-    + (this._args.length ? &#x27; &#x27; + args.join(&#x27; &#x27;) : &#x27;&#x27;);
+  var usage = '[options]'
+    + (this.commands.length ? ' [command]' : '')
+    + (this._args.length ? ' ' + args.join(' ') : '');
 
   if (0 == arguments.length) return this._usage || usage;
   this._usage = str;
@@ -4856,15 +4849,15 @@ return total + 1;
 }
 
 program
-.version(&#x27;0.0.1&#x27;)
-.<span class="apidocCodeKeywordSpan">usage</span>(&#x27;[options] &#x3c;file ...&#x3e;&#x27;)
-.option(&#x27;-i, --integer &#x3c;n&#x3e;&#x27;, &#x27;An integer argument&#x27;, parseInt)
-.option(&#x27;-f, --float &#x3c;n&#x3e;&#x27;, &#x27;A float argument&#x27;, parseFloat)
-.option(&#x27;-r, --range &#x3c;a&#x3e;..&#x3c;b&#x3e;&#x27;, &#x27;A range&#x27;, range)
-.option(&#x27;-l, --list &#x3c;items&#x3e;&#x27;, &#x27;A list&#x27;, list)
-.option(&#x27;-o, --optional [value]&#x27;, &#x27;An optional value&#x27;)
-.option(&#x27;-c, --collect [value]&#x27;, &#x27;A repeatable value&#x27;, collect, [])
-.option(&#x27;-v, --verbose&#x27;, &#x27;A value that can be increased&#x27;, increaseVerbosity, 0)
+.version('0.0.1')
+.<span class="apidocCodeKeywordSpan">usage</span>('[options] &lt;file ...&gt;')
+.option('-i, --integer &lt;n&gt;', 'An integer argument', parseInt)
+.option('-f, --float &lt;n&gt;', 'A float argument', parseFloat)
+.option('-r, --range &lt;a&gt;..&lt;b&gt;', 'A range', range)
+.option('-l, --list &lt;items&gt;', 'A list', list)
+.option('-o, --optional [value]', 'An optional value')
+.option('-c, --collect [value]', 'A repeatable value', collect, [])
+.option('-v, --verbose', 'A value that can be increased', increaseVerbosity, 0)
 ...</pre></li>
     </ul>
 
@@ -4884,7 +4877,7 @@ program
     <ul>
     <li>description and source-code<pre class="apidocCodePre">variadicArgNotLast = function (name) {
   console.error();
-  console.error(&#x22;  error: variadic arguments must be last `%s&#x27;&#x22;, name);
+  console.error("  error: variadic arguments must be last `%s'", name);
   console.error();
   process.exit(1);
 }</pre></li>
@@ -4892,7 +4885,7 @@ program
 if (parsed.args.length) args = parsed.args.concat(args);
 
 self._args.forEach(function(arg, i) {
-  if (arg.required &#x26;&#x26; null == args[i]) {
+  if (arg.required &amp;&amp; null == args[i]) {
     self.missingArgument(arg.name);
   } else if (arg.variadic) {
     if (i !== self._args.length - 1) {
@@ -4924,10 +4917,10 @@ self._args.forEach(function(arg, i) {
     <li>description and source-code<pre class="apidocCodePre">version = function (str, flags) {
   if (0 == arguments.length) return this._version;
   this._version = str;
-  flags = flags || &#x27;-V, --version&#x27;;
-  this.option(flags, &#x27;output the version number&#x27;);
-  this.on(&#x27;version&#x27;, function() {
-    process.stdout.write(str + &#x27;\n&#x27;);
+  flags = flags || '-V, --version';
+  this.option(flags, 'output the version number');
+  this.on('version', function() {
+    process.stdout.write(str + '\n');
     process.exit(0);
   });
   return this;
@@ -4937,17 +4930,17 @@ self._args.forEach(function(arg, i) {
  * Module dependencies.
  */
 
-var program = require(&#x27;commander&#x27;);
+var program = require('commander');
 
 program
-  .<span class="apidocCodeKeywordSpan">version</span>(&#x27;0.0.1&#x27;)
-  .option(&#x27;-p, --peppers&#x27;, &#x27;Add peppers&#x27;)
-  .option(&#x27;-P, --pineapple&#x27;, &#x27;Add pineapple&#x27;)
-  .option(&#x27;-b, --bbq-sauce&#x27;, &#x27;Add bbq sauce&#x27;)
-  .option(&#x27;-c, --cheese [type]&#x27;, &#x27;Add the specified type of cheese [marble]&#x27;, &#x27;marble&#x27;)
+  .<span class="apidocCodeKeywordSpan">version</span>('0.0.1')
+  .option('-p, --peppers', 'Add peppers')
+  .option('-P, --pineapple', 'Add pineapple')
+  .option('-b, --bbq-sauce', 'Add bbq sauce')
+  .option('-c, --cheese [type]', 'Add the specified type of cheese [marble]', 'marble')
   .parse(process.argv);
 
-console.log(&#x27;you ordered a pizza with:&#x27;);
+console.log('you ordered a pizza with:');
 ...</pre></li>
     </ul>
 
@@ -4967,13 +4960,13 @@ console.log(&#x27;you ordered a pizza with:&#x27;);
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function Option(flags, description) {
   this.flags = flags;
-  this.required = ~flags.indexOf(&#x27;&#x3c;&#x27;);
-  this.optional = ~flags.indexOf(&#x27;[&#x27;);
-  this.bool = !~flags.indexOf(&#x27;-no-&#x27;);
+  this.required = ~flags.indexOf('&lt;');
+  this.optional = ~flags.indexOf('[');
+  this.bool = !~flags.indexOf('-no-');
   flags = flags.split(/[ ,|]+/);
-  if (flags.length &#x3e; 1 &#x26;&#x26; !/^[[&#x3c;]/.test(flags[1])) this.short = flags.shift();
+  if (flags.length &gt; 1 &amp;&amp; !/^[[&lt;]/.test(flags[1])) this.short = flags.shift();
   this.long = flags.shift();
-  this.description = description || &#x27;&#x27;;
+  this.description = description || '';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -5002,7 +4995,7 @@ console.log(&#x27;you ordered a pizza with:&#x27;);
 */
 
 Command.prototype.optionFor = function(arg) {
- for (var i = 0, len = this.options.length; i &#x3c; len; ++i) {
+ for (var i = 0, len = this.options.length; i &lt; len; ++i) {
    if (this.options[i].<span class="apidocCodeKeywordSpan">is</span>(arg)) {
      return this.options[i];
    }
@@ -5025,8 +5018,8 @@ Command.prototype.optionFor = function(arg) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">name = function () {
   return this.long
-    .replace(&#x27;--&#x27;, &#x27;&#x27;)
-    .replace(&#x27;no-&#x27;, &#x27;&#x27;);
+    .replace('--', '')
+    .replace('no-', '');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
  * @return {Command} for chaining
@@ -5040,7 +5033,7 @@ var self = this
   , name = camelcase(oname);
 
 // default as 3rd arg
-if (typeof fn != &#x27;function&#x27;) {
+if (typeof fn != 'function') {
   if (fn instanceof RegExp) {
     var regex = fn;
     fn = function(val, def) {
@@ -5071,7 +5064,7 @@ if (typeof fn != &#x27;function&#x27;) {
 */
 
 Command.prototype.optionFor = function(arg) {
- for (var i = 0, len = this.options.length; i &#x3c; len; ++i) {
+ for (var i = 0, len = this.options.length; i &lt; len; ++i) {
    if (this.options[i].<span class="apidocCodeKeywordSpan">is</span>(arg)) {
      return this.options[i];
    }
@@ -5097,3 +5090,4 @@ Command.prototype.optionFor = function(arg) {
     ]
 </div>
 </div>
+</body></html>
