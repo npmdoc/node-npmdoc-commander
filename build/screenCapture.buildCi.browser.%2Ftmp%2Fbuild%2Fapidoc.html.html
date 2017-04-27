@@ -588,21 +588,21 @@
   return this;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
- */
+*/
 
-var program = require('commander');
+Command.prototype.__proto__ = EventEmitter.prototype;
 
-program
-.version('0.0.1')
-.command('rmdir &lt;dir&gt; [otherDirs...]')
-.<span class="apidocCodeKeywordSpan">action</span>(function (dir, otherDirs) {
-  console.log('rmdir %s', dir);
-  if (otherDirs) {
-    otherDirs.forEach(function (oDir) {
-      console.log('rmdir %s', oDir);
-    });
-  }
-});
+/**
+* Add command `name`.
+*
+* The `.<span class="apidocCodeKeywordSpan">action</span>()` callback is invoked when the
+* command `name` is specified via __ARGV__,
+* and the remaining arguments are applied to the
+* function for access.
+*
+* When the `name` is "*" an un-matched command
+* will be passed as the first arg, followed by
+* the rest of __ARGV__ remaining.
 ...</pre></li>
     </ul>
 
@@ -745,21 +745,21 @@ program.parse(process.argv);
   return cmd;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
- * Module dependencies.
- */
-
-var program = require('commander');
-
-program
-.version('0.0.1')
-.<span class="apidocCodeKeywordSpan">command</span>('rmdir &lt;dir&gt; [otherDirs...]')
-.action(function (dir, otherDirs) {
-  console.log('rmdir %s', dir);
-  if (otherDirs) {
-    otherDirs.forEach(function (oDir) {
-      console.log('rmdir %s', oDir);
-    });
-  }
+*      program
+*        .version('0.0.1')
+*        .option('-C, --chdir &lt;path&gt;', 'change the working directory')
+*        .option('-c, --config &lt;path&gt;', 'set config path. defaults to ./deploy.conf')
+*        .option('-T, --no-tests', 'ignore test hook')
+*
+*      program
+*        .<span class="apidocCodeKeywordSpan">command</span>('setup')
+*        .description('run remote setup commands')
+*        .action(function() {
+*          console.log('setup');
+*        });
+*
+*      program
+*        .command('exec &lt;cmd&gt;')
 ...</pre></li>
     </ul>
 
@@ -840,20 +840,21 @@ var options = [
   return this;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-.version('0.0.1')
-.option('-C, --chdir &lt;path&gt;', 'change the working directory')
-.option('-c, --config &lt;path&gt;', 'set config path. defaults to ./deploy.conf')
-.option('-T, --no-tests', 'ignore test hook')
-
-program
-.command('setup [env]')
-.<span class="apidocCodeKeywordSpan">description</span>('run setup commands for all envs')
-.option("-s, --setup_mode [mode]", "Which setup mode to use")
-.action(function(env, options){
-  var mode = options.setup_mode || "normal";
-  env = env || 'all';
-  console.log('setup for %s env(s) with %s mode', env, mode);
-});
+*        .version('0.0.1')
+*        .option('-C, --chdir &lt;path&gt;', 'change the working directory')
+*        .option('-c, --config &lt;path&gt;', 'set config path. defaults to ./deploy.conf')
+*        .option('-T, --no-tests', 'ignore test hook')
+*
+*      program
+*        .command('setup')
+*        .<span class="apidocCodeKeywordSpan">description</span>('run remote setup commands')
+*        .action(function() {
+*          console.log('setup');
+*        });
+*
+*      program
+*        .command('exec &lt;cmd&gt;')
+*        .description('run the given remote command')
 ...</pre></li>
     </ul>
 
@@ -971,21 +972,21 @@ return result;
   process.exit();
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  }
+ * @param {Array} unknown
+ * @api private
+ */
 
-function make_red(txt) {
-  return colors.red(txt); //display the help text in red on the console
+Command.prototype.executeSubCommand = function(argv, args, unknown) {
+args = args.concat(unknown);
+
+if (!args.length) this.<span class="apidocCodeKeywordSpan">help</span>();
+if ('help' == args[0] &amp;&amp; 1 == args.length) this.help();
+
+// &lt;cmd&gt; --help
+if ('help' == args[0]) {
+  args[0] = args[1];
+  args[1] = '--help';
 }
-```
-
-## .<span class="apidocCodeKeywordSpan">help</span>(cb)
-
-  Output help information and exit immediately.
-  Optional callback cb allows post-processing of help text before it is displayed.
-
-## Examples
-
-```js
 ...</pre></li>
     </ul>
 
@@ -1279,23 +1280,22 @@ if (this._execs[name] &amp;&amp; typeof this._execs[name] != "function") {
   return this;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-
-## Installation
-
-   $ npm install commander
-
-## Option parsing
-
-Options with commander are defined with the `.<span class="apidocCodeKeywordSpan">option</span>()` method, also serving as documentation
- for the options. The example below parses args and options from `process.argv`, leaving remaining args as the `program.args` array
- which were not consumed by options.
-
-```js
-#!/usr/bin/env node
-
-/**
-* Module dependencies.
-*/
+* will be passed as the first arg, followed by
+* the rest of __ARGV__ remaining.
+*
+* Examples:
+*
+*      program
+*        .version('0.0.1')
+*        .<span class="apidocCodeKeywordSpan">option</span>('-C, --chdir &lt;path&gt;', 'change the working directory
+')
+*        .option('-c, --config &lt;path&gt;', 'set config path. defaults to ./deploy.conf')
+*        .option('-T, --no-tests', 'ignore test hook')
+*
+*      program
+*        .command('setup')
+*        .description('run remote setup commands')
+*        .action(function() {
 ...</pre></li>
     </ul>
 
@@ -1451,21 +1451,21 @@ if (option) {
   this.emit('--help');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-Examples:
+/**
+* Output help information and exit.
+*
+* @api public
+*/
 
-  $ custom-help --help
-  $ custom-help -h
+Command.prototype.help = function(cb) {
+ this.<span class="apidocCodeKeywordSpan">outputHelp</span>(cb);
+ process.exit();
+};
 
-```
-
-## .<span class="apidocCodeKeywordSpan">outputHelp</span>(cb)
-
-Output help information without exiting.
-Optional callback cb allows post-processing of help text before it is displayed.
-
-If you want to display help by default (e.g. if no command was provided), you can use something like:
-
-```js
+/**
+* Camel-case the given `flag`
+*
+* @param {String} flag
 ...</pre></li>
     </ul>
 
@@ -1513,21 +1513,20 @@ If you want to display help by default (e.g. if no command was provided), you ca
   return result;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-
-program
-  .version('0.0.1')
-  .option('-p, --peppers', 'Add peppers')
-  .option('-P, --pineapple', 'Add pineapple')
-  .option('-b, --bbq-sauce', 'Add bbq sauce')
-  .option('-c, --cheese [type]', 'Add the specified type of cheese [marble]', 'marble')
-  .<span class="apidocCodeKeywordSpan">parse</span>(process.argv);
-
-console.log('you ordered a pizza with:');
-if (program.peppers) console.log('  - peppers');
-if (program.pineapple) console.log('  - pineapple');
-if (program.bbqSauce) console.log('  - bbq');
-console.log('  - %s cheese', program.cheese);
-```
+*      program
+*        .command('*')
+*        .description('deploy the given env')
+*        .action(function(env) {
+*          console.log('deploying "%s"', env);
+*        });
+*
+*      program.<span class="apidocCodeKeywordSpan">parse</span>(process.argv);
+ *
+* @param {String} name
+* @param {String} [desc] for git-style sub-commands
+* @return {Command} the new command
+* @api public
+*/
 ...</pre></li>
     </ul>
 
@@ -1795,21 +1794,21 @@ self._args.forEach(function(arg, i) {
   return this;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
+ * allow "-" hyphen as an option argument
+ * support for RegExp coercion
 
-function increaseVerbosity(v, total) {
-return total + 1;
-}
+1.1.1 / 2012-11-20
+==================
 
-program
-.version('0.0.1')
-.<span class="apidocCodeKeywordSpan">usage</span>('[options] &lt;file ...&gt;')
-.option('-i, --integer &lt;n&gt;', 'An integer argument', parseInt)
-.option('-f, --float &lt;n&gt;', 'A float argument', parseFloat)
-.option('-r, --range &lt;a&gt;..&lt;b&gt;', 'A range', range)
-.option('-l, --list &lt;items&gt;', 'A list', list)
-.option('-o, --optional [value]', 'An optional value')
-.option('-c, --collect [value]', 'A repeatable value', collect, [])
-.option('-v, --verbose', 'A value that can be increased', increaseVerbosity, 0)
+  * add more sub-command padding
+  * fix .<span class="apidocCodeKeywordSpan">usage</span>() when args are present. Closes #106
+
+1.1.0 / 2012-11-16
+==================
+
+  * add git-style executable subcommand support. Closes #94
+
+1.0.5 / 2012-10-09
 ...</pre></li>
     </ul>
 
@@ -1868,21 +1867,20 @@ self._args.forEach(function(arg, i) {
   return this;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-/**
- * Module dependencies.
- */
+==================
 
-var program = require('commander');
+* add `outputHelp()` method.
 
-program
-  .<span class="apidocCodeKeywordSpan">version</span>('0.0.1')
-  .option('-p, --peppers', 'Add peppers')
-  .option('-P, --pineapple', 'Add pineapple')
-  .option('-b, --bbq-sauce', 'Add bbq sauce')
-  .option('-c, --cheese [type]', 'Add the specified type of cheese [marble]', 'marble')
-  .parse(process.argv);
+1.0.3 / 2012-08-30
+==================
 
-console.log('you ordered a pizza with:');
+* remove invalid .<span class="apidocCodeKeywordSpan">version</span>() defaulting
+
+1.0.2 / 2012-08-24
+==================
+
+* add `--foo=bar` support [arv]
+* fix password on node 0.8.8. Make backward compatible with 0.6 [focusaurus]
 ...</pre></li>
     </ul>
 

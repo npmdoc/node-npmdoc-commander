@@ -595,21 +595,21 @@
   return this;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
- */
+*/
 
-var program = require(&#x27;commander&#x27;);
+Command.prototype.__proto__ = EventEmitter.prototype;
 
-program
-.version(&#x27;0.0.1&#x27;)
-.command(&#x27;rmdir &#x3c;dir&#x3e; [otherDirs...]&#x27;)
-.<span class="apidocCodeKeywordSpan">action</span>(function (dir, otherDirs) {
-  console.log(&#x27;rmdir %s&#x27;, dir);
-  if (otherDirs) {
-    otherDirs.forEach(function (oDir) {
-      console.log(&#x27;rmdir %s&#x27;, oDir);
-    });
-  }
-});
+/**
+* Add command `name`.
+*
+* The `.<span class="apidocCodeKeywordSpan">action</span>()` callback is invoked when the
+* command `name` is specified via __ARGV__,
+* and the remaining arguments are applied to the
+* function for access.
+*
+* When the `name` is &#x22;*&#x22; an un-matched command
+* will be passed as the first arg, followed by
+* the rest of __ARGV__ remaining.
 ...</pre></li>
     </ul>
 
@@ -752,21 +752,21 @@ program.parse(process.argv);
   return cmd;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
- * Module dependencies.
- */
-
-var program = require(&#x27;commander&#x27;);
-
-program
-.version(&#x27;0.0.1&#x27;)
-.<span class="apidocCodeKeywordSpan">command</span>(&#x27;rmdir &#x3c;dir&#x3e; [otherDirs...]&#x27;)
-.action(function (dir, otherDirs) {
-  console.log(&#x27;rmdir %s&#x27;, dir);
-  if (otherDirs) {
-    otherDirs.forEach(function (oDir) {
-      console.log(&#x27;rmdir %s&#x27;, oDir);
-    });
-  }
+*      program
+*        .version(&#x27;0.0.1&#x27;)
+*        .option(&#x27;-C, --chdir &#x3c;path&#x3e;&#x27;, &#x27;change the working directory&#x27;)
+*        .option(&#x27;-c, --config &#x3c;path&#x3e;&#x27;, &#x27;set config path. defaults to ./deploy.conf&#x27;)
+*        .option(&#x27;-T, --no-tests&#x27;, &#x27;ignore test hook&#x27;)
+*
+*      program
+*        .<span class="apidocCodeKeywordSpan">command</span>(&#x27;setup&#x27;)
+*        .description(&#x27;run remote setup commands&#x27;)
+*        .action(function() {
+*          console.log(&#x27;setup&#x27;);
+*        });
+*
+*      program
+*        .command(&#x27;exec &#x3c;cmd&#x3e;&#x27;)
 ...</pre></li>
     </ul>
 
@@ -847,20 +847,21 @@ var options = [
   return this;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-.version(&#x27;0.0.1&#x27;)
-.option(&#x27;-C, --chdir &#x3c;path&#x3e;&#x27;, &#x27;change the working directory&#x27;)
-.option(&#x27;-c, --config &#x3c;path&#x3e;&#x27;, &#x27;set config path. defaults to ./deploy.conf&#x27;)
-.option(&#x27;-T, --no-tests&#x27;, &#x27;ignore test hook&#x27;)
-
-program
-.command(&#x27;setup [env]&#x27;)
-.<span class="apidocCodeKeywordSpan">description</span>(&#x27;run setup commands for all envs&#x27;)
-.option(&#x22;-s, --setup_mode [mode]&#x22;, &#x22;Which setup mode to use&#x22;)
-.action(function(env, options){
-  var mode = options.setup_mode || &#x22;normal&#x22;;
-  env = env || &#x27;all&#x27;;
-  console.log(&#x27;setup for %s env(s) with %s mode&#x27;, env, mode);
-});
+*        .version(&#x27;0.0.1&#x27;)
+*        .option(&#x27;-C, --chdir &#x3c;path&#x3e;&#x27;, &#x27;change the working directory&#x27;)
+*        .option(&#x27;-c, --config &#x3c;path&#x3e;&#x27;, &#x27;set config path. defaults to ./deploy.conf&#x27;)
+*        .option(&#x27;-T, --no-tests&#x27;, &#x27;ignore test hook&#x27;)
+*
+*      program
+*        .command(&#x27;setup&#x27;)
+*        .<span class="apidocCodeKeywordSpan">description</span>(&#x27;run remote setup commands&#x27;)
+*        .action(function() {
+*          console.log(&#x27;setup&#x27;);
+*        });
+*
+*      program
+*        .command(&#x27;exec &#x3c;cmd&#x3e;&#x27;)
+*        .description(&#x27;run the given remote command&#x27;)
 ...</pre></li>
     </ul>
 
@@ -978,21 +979,21 @@ return result;
   process.exit();
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  }
+ * @param {Array} unknown
+ * @api private
+ */
 
-function make_red(txt) {
-  return colors.red(txt); //display the help text in red on the console
+Command.prototype.executeSubCommand = function(argv, args, unknown) {
+args = args.concat(unknown);
+
+if (!args.length) this.<span class="apidocCodeKeywordSpan">help</span>();
+if (&#x27;help&#x27; == args[0] &#x26;&#x26; 1 == args.length) this.help();
+
+// &#x3c;cmd&#x3e; --help
+if (&#x27;help&#x27; == args[0]) {
+  args[0] = args[1];
+  args[1] = &#x27;--help&#x27;;
 }
-```
-
-## .<span class="apidocCodeKeywordSpan">help</span>(cb)
-
-  Output help information and exit immediately.
-  Optional callback cb allows post-processing of help text before it is displayed.
-
-## Examples
-
-```js
 ...</pre></li>
     </ul>
 
@@ -1286,23 +1287,22 @@ if (this._execs[name] &#x26;&#x26; typeof this._execs[name] != &#x22;function&#x
   return this;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-
-## Installation
-
-   $ npm install commander
-
-## Option parsing
-
-Options with commander are defined with the `.<span class="apidocCodeKeywordSpan">option</span>()` method, also serving as documentation
- for the options. The example below parses args and options from `process.argv`, leaving remaining args as the `program.args` array
- which were not consumed by options.
-
-```js
-#!/usr/bin/env node
-
-/**
-* Module dependencies.
-*/
+* will be passed as the first arg, followed by
+* the rest of __ARGV__ remaining.
+*
+* Examples:
+*
+*      program
+*        .version(&#x27;0.0.1&#x27;)
+*        .<span class="apidocCodeKeywordSpan">option</span>(&#x27;-C, --chdir &#x3c;path&#x3e;&#x27;, &#x27;change the working directory
+&#x27;)
+*        .option(&#x27;-c, --config &#x3c;path&#x3e;&#x27;, &#x27;set config path. defaults to ./deploy.conf&#x27;)
+*        .option(&#x27;-T, --no-tests&#x27;, &#x27;ignore test hook&#x27;)
+*
+*      program
+*        .command(&#x27;setup&#x27;)
+*        .description(&#x27;run remote setup commands&#x27;)
+*        .action(function() {
 ...</pre></li>
     </ul>
 
@@ -1458,21 +1458,21 @@ if (option) {
   this.emit(&#x27;--help&#x27;);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-Examples:
+/**
+* Output help information and exit.
+*
+* @api public
+*/
 
-  $ custom-help --help
-  $ custom-help -h
+Command.prototype.help = function(cb) {
+ this.<span class="apidocCodeKeywordSpan">outputHelp</span>(cb);
+ process.exit();
+};
 
-```
-
-## .<span class="apidocCodeKeywordSpan">outputHelp</span>(cb)
-
-Output help information without exiting.
-Optional callback cb allows post-processing of help text before it is displayed.
-
-If you want to display help by default (e.g. if no command was provided), you can use something like:
-
-```js
+/**
+* Camel-case the given `flag`
+*
+* @param {String} flag
 ...</pre></li>
     </ul>
 
@@ -1520,21 +1520,20 @@ If you want to display help by default (e.g. if no command was provided), you ca
   return result;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-
-program
-  .version(&#x27;0.0.1&#x27;)
-  .option(&#x27;-p, --peppers&#x27;, &#x27;Add peppers&#x27;)
-  .option(&#x27;-P, --pineapple&#x27;, &#x27;Add pineapple&#x27;)
-  .option(&#x27;-b, --bbq-sauce&#x27;, &#x27;Add bbq sauce&#x27;)
-  .option(&#x27;-c, --cheese [type]&#x27;, &#x27;Add the specified type of cheese [marble]&#x27;, &#x27;marble&#x27;)
-  .<span class="apidocCodeKeywordSpan">parse</span>(process.argv);
-
-console.log(&#x27;you ordered a pizza with:&#x27;);
-if (program.peppers) console.log(&#x27;  - peppers&#x27;);
-if (program.pineapple) console.log(&#x27;  - pineapple&#x27;);
-if (program.bbqSauce) console.log(&#x27;  - bbq&#x27;);
-console.log(&#x27;  - %s cheese&#x27;, program.cheese);
-```
+*      program
+*        .command(&#x27;*&#x27;)
+*        .description(&#x27;deploy the given env&#x27;)
+*        .action(function(env) {
+*          console.log(&#x27;deploying &#x22;%s&#x22;&#x27;, env);
+*        });
+*
+*      program.<span class="apidocCodeKeywordSpan">parse</span>(process.argv);
+ *
+* @param {String} name
+* @param {String} [desc] for git-style sub-commands
+* @return {Command} the new command
+* @api public
+*/
 ...</pre></li>
     </ul>
 
@@ -1802,21 +1801,21 @@ self._args.forEach(function(arg, i) {
   return this;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
+ * allow &#x22;-&#x22; hyphen as an option argument
+ * support for RegExp coercion
 
-function increaseVerbosity(v, total) {
-return total + 1;
-}
+1.1.1 / 2012-11-20
+==================
 
-program
-.version(&#x27;0.0.1&#x27;)
-.<span class="apidocCodeKeywordSpan">usage</span>(&#x27;[options] &#x3c;file ...&#x3e;&#x27;)
-.option(&#x27;-i, --integer &#x3c;n&#x3e;&#x27;, &#x27;An integer argument&#x27;, parseInt)
-.option(&#x27;-f, --float &#x3c;n&#x3e;&#x27;, &#x27;A float argument&#x27;, parseFloat)
-.option(&#x27;-r, --range &#x3c;a&#x3e;..&#x3c;b&#x3e;&#x27;, &#x27;A range&#x27;, range)
-.option(&#x27;-l, --list &#x3c;items&#x3e;&#x27;, &#x27;A list&#x27;, list)
-.option(&#x27;-o, --optional [value]&#x27;, &#x27;An optional value&#x27;)
-.option(&#x27;-c, --collect [value]&#x27;, &#x27;A repeatable value&#x27;, collect, [])
-.option(&#x27;-v, --verbose&#x27;, &#x27;A value that can be increased&#x27;, increaseVerbosity, 0)
+  * add more sub-command padding
+  * fix .<span class="apidocCodeKeywordSpan">usage</span>() when args are present. Closes #106
+
+1.1.0 / 2012-11-16
+==================
+
+  * add git-style executable subcommand support. Closes #94
+
+1.0.5 / 2012-10-09
 ...</pre></li>
     </ul>
 
@@ -1875,21 +1874,20 @@ self._args.forEach(function(arg, i) {
   return this;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-/**
- * Module dependencies.
- */
+==================
 
-var program = require(&#x27;commander&#x27;);
+* add `outputHelp()` method.
 
-program
-  .<span class="apidocCodeKeywordSpan">version</span>(&#x27;0.0.1&#x27;)
-  .option(&#x27;-p, --peppers&#x27;, &#x27;Add peppers&#x27;)
-  .option(&#x27;-P, --pineapple&#x27;, &#x27;Add pineapple&#x27;)
-  .option(&#x27;-b, --bbq-sauce&#x27;, &#x27;Add bbq sauce&#x27;)
-  .option(&#x27;-c, --cheese [type]&#x27;, &#x27;Add the specified type of cheese [marble]&#x27;, &#x27;marble&#x27;)
-  .parse(process.argv);
+1.0.3 / 2012-08-30
+==================
 
-console.log(&#x27;you ordered a pizza with:&#x27;);
+* remove invalid .<span class="apidocCodeKeywordSpan">version</span>() defaulting
+
+1.0.2 / 2012-08-24
+==================
+
+* add `--foo=bar` support [arv]
+* fix password on node 0.8.8. Make backward compatible with 0.6 [focusaurus]
 ...</pre></li>
     </ul>
 
