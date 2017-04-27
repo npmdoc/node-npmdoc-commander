@@ -1,0 +1,2000 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/tj/commander.js#readme"
+
+    >commander (v2.9.0)</a>
+</h1>
+<h4>the complete solution for node.js command-line programs</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.commander">module commander</a><ol>
+
+        <li>
+
+            <span class="apidocSignatureSpan">boolean <span class="apidocSignatureSpan">commander.</span>_allowUnknownOption</span>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.commander.Command">
+            function <span class="apidocSignatureSpan">commander.</span>Command
+            <span class="apidocSignatureSpan">(name)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.commander.Option">
+            function <span class="apidocSignatureSpan">commander.</span>Option
+            <span class="apidocSignatureSpan">(flags, description)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">commander.</span>Command.prototype</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">commander.</span>Option.prototype</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">commander.</span>_args</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">commander.</span>_execs</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">commander.</span>commands</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">commander.</span>options</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">string <span class="apidocSignatureSpan">commander.</span>_name</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.commander.Command">module commander.Command</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.commander.Command.Command">
+            function <span class="apidocSignatureSpan">commander.</span>Command
+            <span class="apidocSignatureSpan">(name)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.commander.Command.prototype">module commander.Command.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.commander.Command.prototype.action">
+            function <span class="apidocSignatureSpan">commander.Command.prototype.</span>action
+            <span class="apidocSignatureSpan">(fn)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.commander.Command.prototype.addImplicitHelpCommand">
+            function <span class="apidocSignatureSpan">commander.Command.prototype.</span>addImplicitHelpCommand
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.commander.Command.prototype.alias">
+            function <span class="apidocSignatureSpan">commander.Command.prototype.</span>alias
+            <span class="apidocSignatureSpan">(alias)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.commander.Command.prototype.allowUnknownOption">
+            function <span class="apidocSignatureSpan">commander.Command.prototype.</span>allowUnknownOption
+            <span class="apidocSignatureSpan">(arg)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.commander.Command.prototype.arguments">
+            function <span class="apidocSignatureSpan">commander.Command.prototype.</span>arguments
+            <span class="apidocSignatureSpan">(desc)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.commander.Command.prototype.command">
+            function <span class="apidocSignatureSpan">commander.Command.prototype.</span>command
+            <span class="apidocSignatureSpan">(name, desc, opts)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.commander.Command.prototype.commandHelp">
+            function <span class="apidocSignatureSpan">commander.Command.prototype.</span>commandHelp
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.commander.Command.prototype.description">
+            function <span class="apidocSignatureSpan">commander.Command.prototype.</span>description
+            <span class="apidocSignatureSpan">(str)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.commander.Command.prototype.executeSubCommand">
+            function <span class="apidocSignatureSpan">commander.Command.prototype.</span>executeSubCommand
+            <span class="apidocSignatureSpan">(argv, args, unknown)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.commander.Command.prototype.help">
+            function <span class="apidocSignatureSpan">commander.Command.prototype.</span>help
+            <span class="apidocSignatureSpan">(cb)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.commander.Command.prototype.helpInformation">
+            function <span class="apidocSignatureSpan">commander.Command.prototype.</span>helpInformation
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.commander.Command.prototype.largestOptionLength">
+            function <span class="apidocSignatureSpan">commander.Command.prototype.</span>largestOptionLength
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.commander.Command.prototype.missingArgument">
+            function <span class="apidocSignatureSpan">commander.Command.prototype.</span>missingArgument
+            <span class="apidocSignatureSpan">(name)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.commander.Command.prototype.name">
+            function <span class="apidocSignatureSpan">commander.Command.prototype.</span>name
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.commander.Command.prototype.normalize">
+            function <span class="apidocSignatureSpan">commander.Command.prototype.</span>normalize
+            <span class="apidocSignatureSpan">(args)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.commander.Command.prototype.option">
+            function <span class="apidocSignatureSpan">commander.Command.prototype.</span>option
+            <span class="apidocSignatureSpan">(flags, description, fn, defaultValue)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.commander.Command.prototype.optionFor">
+            function <span class="apidocSignatureSpan">commander.Command.prototype.</span>optionFor
+            <span class="apidocSignatureSpan">(arg)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.commander.Command.prototype.optionHelp">
+            function <span class="apidocSignatureSpan">commander.Command.prototype.</span>optionHelp
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.commander.Command.prototype.optionMissingArgument">
+            function <span class="apidocSignatureSpan">commander.Command.prototype.</span>optionMissingArgument
+            <span class="apidocSignatureSpan">(option, flag)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.commander.Command.prototype.opts">
+            function <span class="apidocSignatureSpan">commander.Command.prototype.</span>opts
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.commander.Command.prototype.outputHelp">
+            function <span class="apidocSignatureSpan">commander.Command.prototype.</span>outputHelp
+            <span class="apidocSignatureSpan">(cb)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.commander.Command.prototype.parse">
+            function <span class="apidocSignatureSpan">commander.Command.prototype.</span>parse
+            <span class="apidocSignatureSpan">(argv)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.commander.Command.prototype.parseArgs">
+            function <span class="apidocSignatureSpan">commander.Command.prototype.</span>parseArgs
+            <span class="apidocSignatureSpan">(args, unknown)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.commander.Command.prototype.parseExpectedArgs">
+            function <span class="apidocSignatureSpan">commander.Command.prototype.</span>parseExpectedArgs
+            <span class="apidocSignatureSpan">(args)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.commander.Command.prototype.parseOptions">
+            function <span class="apidocSignatureSpan">commander.Command.prototype.</span>parseOptions
+            <span class="apidocSignatureSpan">(argv)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.commander.Command.prototype.unknownOption">
+            function <span class="apidocSignatureSpan">commander.Command.prototype.</span>unknownOption
+            <span class="apidocSignatureSpan">(flag)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.commander.Command.prototype.usage">
+            function <span class="apidocSignatureSpan">commander.Command.prototype.</span>usage
+            <span class="apidocSignatureSpan">(str)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.commander.Command.prototype.variadicArgNotLast">
+            function <span class="apidocSignatureSpan">commander.Command.prototype.</span>variadicArgNotLast
+            <span class="apidocSignatureSpan">(name)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.commander.Command.prototype.version">
+            function <span class="apidocSignatureSpan">commander.Command.prototype.</span>version
+            <span class="apidocSignatureSpan">(str, flags)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.commander.Option">module commander.Option</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.commander.Option.Option">
+            function <span class="apidocSignatureSpan">commander.</span>Option
+            <span class="apidocSignatureSpan">(flags, description)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.commander.Option.prototype">module commander.Option.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.commander.Option.prototype.is">
+            function <span class="apidocSignatureSpan">commander.Option.prototype.</span>is
+            <span class="apidocSignatureSpan">(arg)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.commander.Option.prototype.name">
+            function <span class="apidocSignatureSpan">commander.Option.prototype.</span>name
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.commander" id="apidoc.module.commander">module commander</a></h1>
+
+
+
+
+    <h2>
+        <a href="#apidoc.element.commander.Command" id="apidoc.element.commander.Command">
+        function <span class="apidocSignatureSpan">commander.</span>Command
+        <span class="apidocSignatureSpan">(name)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Command(name) {
+  this.commands = [];
+  this.options = [];
+  this._execs = {};
+  this._allowUnknownOption = false;
+  this._args = [];
+  this._name = name || &#x27;&#x27;;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.commander.Option" id="apidoc.element.commander.Option">
+        function <span class="apidocSignatureSpan">commander.</span>Option
+        <span class="apidocSignatureSpan">(flags, description)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Option(flags, description) {
+  this.flags = flags;
+  this.required = ~flags.indexOf(&#x27;&#x3c;&#x27;);
+  this.optional = ~flags.indexOf(&#x27;[&#x27;);
+  this.bool = !~flags.indexOf(&#x27;-no-&#x27;);
+  flags = flags.split(/[ ,|]+/);
+  if (flags.length &#x3e; 1 &#x26;&#x26; !/^[[&#x3c;]/.test(flags[1])) this.short = flags.shift();
+  this.long = flags.shift();
+  this.description = description || &#x27;&#x27;;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.commander.Command" id="apidoc.module.commander.Command">module commander.Command</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.commander.Command.Command" id="apidoc.element.commander.Command.Command">
+        function <span class="apidocSignatureSpan">commander.</span>Command
+        <span class="apidocSignatureSpan">(name)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Command(name) {
+  this.commands = [];
+  this.options = [];
+  this._execs = {};
+  this._allowUnknownOption = false;
+  this._args = [];
+  this._name = name || &#x27;&#x27;;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.commander.Command.prototype" id="apidoc.module.commander.Command.prototype">module commander.Command.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.commander.Command.prototype.action" id="apidoc.element.commander.Command.prototype.action">
+        function <span class="apidocSignatureSpan">commander.Command.prototype.</span>action
+        <span class="apidocSignatureSpan">(fn)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">action = function (fn) {
+  var self = this;
+  var listener = function(args, unknown) {
+    // Parse any so-far unknown options
+    args = args || [];
+    unknown = unknown || [];
+
+    var parsed = self.parseOptions(unknown);
+
+    // Output help if necessary
+    outputHelpIfNecessary(self, parsed.unknown);
+
+    // If there are still any unknown options, then we simply
+    // die, unless someone asked for help, in which case we give it
+    // to them, and then we die.
+    if (parsed.unknown.length &#x3e; 0) {
+      self.unknownOption(parsed.unknown[0]);
+    }
+
+    // Leftover arguments need to be pushed back. Fixes issue #56
+    if (parsed.args.length) args = parsed.args.concat(args);
+
+    self._args.forEach(function(arg, i) {
+      if (arg.required &#x26;&#x26; null == args[i]) {
+        self.missingArgument(arg.name);
+      } else if (arg.variadic) {
+        if (i !== self._args.length - 1) {
+          self.variadicArgNotLast(arg.name);
+        }
+
+        args[i] = args.splice(i);
+      }
+    });
+
+    // Always append ourselves to the end of the arguments,
+    // to make sure we match the number of arguments the user
+    // expects
+    if (self._args.length) {
+      args[self._args.length] = self;
+    } else {
+      args.push(self);
+    }
+
+    fn.apply(self, args);
+  };
+  var parent = this.parent || this;
+  var name = parent === this ? &#x27;*&#x27; : this._name;
+  parent.on(name, listener);
+  if (this._alias) parent.on(this._alias, listener);
+  return this;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ */
+
+var program = require(&#x27;commander&#x27;);
+
+program
+.version(&#x27;0.0.1&#x27;)
+.command(&#x27;rmdir &#x3c;dir&#x3e; [otherDirs...]&#x27;)
+.<span class="apidocCodeKeywordSpan">action</span>(function (dir, otherDirs) {
+  console.log(&#x27;rmdir %s&#x27;, dir);
+  if (otherDirs) {
+    otherDirs.forEach(function (oDir) {
+      console.log(&#x27;rmdir %s&#x27;, oDir);
+    });
+  }
+});
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.commander.Command.prototype.addImplicitHelpCommand" id="apidoc.element.commander.Command.prototype.addImplicitHelpCommand">
+        function <span class="apidocSignatureSpan">commander.Command.prototype.</span>addImplicitHelpCommand
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">addImplicitHelpCommand = function () {
+  this.command(&#x27;help [cmd]&#x27;, &#x27;display help for [cmd]&#x27;);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ * @param {Array} argv
+ * @return {Command} for chaining
+ * @api public
+ */
+
+Command.prototype.parse = function(argv) {
+// implicit help
+if (this.executables) this.<span class="apidocCodeKeywordSpan">addImplicitHelpCommand</span>();
+
+// store raw args
+this.rawArgs = argv;
+
+// guess name
+this._name = this._name || basename(argv[1], &#x27;.js&#x27;);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.commander.Command.prototype.alias" id="apidoc.element.commander.Command.prototype.alias">
+        function <span class="apidocSignatureSpan">commander.Command.prototype.</span>alias
+        <span class="apidocSignatureSpan">(alias)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">alias = function (alias) {
+  if (0 == arguments.length) return this._alias;
+  this._alias = alias;
+  return this;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  var mode = options.setup_mode || &#x22;normal&#x22;;
+  env = env || &#x27;all&#x27;;
+  console.log(&#x27;setup for %s env(s) with %s mode&#x27;, env, mode);
+});
+
+program
+.command(&#x27;exec &#x3c;cmd&#x3e;&#x27;)
+.<span class="apidocCodeKeywordSpan">alias</span>(&#x27;ex&#x27;)
+.description(&#x27;execute the given remote cmd&#x27;)
+.option(&#x22;-e, --exec_mode &#x3c;mode&#x3e;&#x22;, &#x22;Which exec mode to use&#x22;)
+.action(function(cmd, options){
+  console.log(&#x27;exec &#x22;%s&#x22; using %s mode&#x27;, cmd, options.exec_mode);
+}).on(&#x27;--help&#x27;, function() {
+  console.log(&#x27;  Examples:&#x27;);
+  console.log();
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.commander.Command.prototype.allowUnknownOption" id="apidoc.element.commander.Command.prototype.allowUnknownOption">
+        function <span class="apidocSignatureSpan">commander.Command.prototype.</span>allowUnknownOption
+        <span class="apidocSignatureSpan">(arg)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">allowUnknownOption = function (arg) {
+    this._allowUnknownOption = arguments.length === 0 || arg;
+    return this;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.commander.Command.prototype.arguments" id="apidoc.element.commander.Command.prototype.arguments">
+        function <span class="apidocSignatureSpan">commander.Command.prototype.</span>arguments
+        <span class="apidocSignatureSpan">(desc)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">arguments = function (desc) {
+  return this.parseExpectedArgs(desc.split(/ +/));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+```js
+#!/usr/bin/env node
+
+var program = require(&#x27;../&#x27;);
+
+program
+  .version(&#x27;0.0.1&#x27;)
+  .<span class="apidocCodeKeywordSpan">arguments</span>(&#x27;&#x3c;cmd&#x3e; [env]&#x27;)
+  .action(function (cmd, env) {
+     cmdValue = cmd;
+     envValue = env;
+  });
+
+program.parse(process.argv);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.commander.Command.prototype.command" id="apidoc.element.commander.Command.prototype.command">
+        function <span class="apidocSignatureSpan">commander.Command.prototype.</span>command
+        <span class="apidocSignatureSpan">(name, desc, opts)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">command = function (name, desc, opts) {
+  opts = opts || {};
+  var args = name.split(/ +/);
+  var cmd = new Command(args.shift());
+
+  if (desc) {
+    cmd.description(desc);
+    this.executables = true;
+    this._execs[cmd._name] = true;
+    if (opts.isDefault) this.defaultExecutable = cmd._name;
+  }
+
+  cmd._noHelp = !!opts.noHelp;
+  this.commands.push(cmd);
+  cmd.parseExpectedArgs(args);
+  cmd.parent = this;
+
+  if (desc) return this;
+  return cmd;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ * Module dependencies.
+ */
+
+var program = require(&#x27;commander&#x27;);
+
+program
+.version(&#x27;0.0.1&#x27;)
+.<span class="apidocCodeKeywordSpan">command</span>(&#x27;rmdir &#x3c;dir&#x3e; [otherDirs...]&#x27;)
+.action(function (dir, otherDirs) {
+  console.log(&#x27;rmdir %s&#x27;, dir);
+  if (otherDirs) {
+    otherDirs.forEach(function (oDir) {
+      console.log(&#x27;rmdir %s&#x27;, oDir);
+    });
+  }
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.commander.Command.prototype.commandHelp" id="apidoc.element.commander.Command.prototype.commandHelp">
+        function <span class="apidocSignatureSpan">commander.Command.prototype.</span>commandHelp
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">commandHelp = function () {
+  if (!this.commands.length) return &#x27;&#x27;;
+
+  var commands = this.commands.filter(function(cmd) {
+    return !cmd._noHelp;
+  }).map(function(cmd) {
+    var args = cmd._args.map(function(arg) {
+      return humanReadableArgName(arg);
+    }).join(&#x27; &#x27;);
+
+    return [
+      cmd._name
+        + (cmd._alias ? &#x27;|&#x27; + cmd._alias : &#x27;&#x27;)
+        + (cmd.options.length ? &#x27; [options]&#x27; : &#x27;&#x27;)
+        + &#x27; &#x27; + args
+      , cmd.description()
+    ];
+  });
+
+  var width = commands.reduce(function(max, command) {
+    return Math.max(max, command[0].length);
+  }, 0);
+
+  return [
+    &#x27;&#x27;
+    , &#x27;  Commands:&#x27;
+    , &#x27;&#x27;
+    , commands.map(function(cmd) {
+      var desc = cmd[1] ? &#x27;  &#x27; + cmd[1] : &#x27;&#x27;;
+      return pad(cmd[0], width) + desc;
+    }).join(&#x27;\n&#x27;).replace(/^/gm, &#x27;    &#x27;)
+    , &#x27;&#x27;
+  ].join(&#x27;\n&#x27;);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var usage = [
+  &#x27;&#x27;
+  ,&#x27;  Usage: &#x27; + cmdName + &#x27; &#x27; + this.usage()
+  , &#x27;&#x27;
+];
+
+var cmds = [];
+var commandHelp = this.<span class="apidocCodeKeywordSpan">commandHelp</span>();
+if (commandHelp) cmds = [commandHelp];
+
+var options = [
+  &#x27;  Options:&#x27;
+  , &#x27;&#x27;
+  , &#x27;&#x27; + this.optionHelp().replace(/^/gm, &#x27;    &#x27;)
+  , &#x27;&#x27;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.commander.Command.prototype.description" id="apidoc.element.commander.Command.prototype.description">
+        function <span class="apidocSignatureSpan">commander.Command.prototype.</span>description
+        <span class="apidocSignatureSpan">(str)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">description = function (str) {
+  if (0 === arguments.length) return this._description;
+  this._description = str;
+  return this;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+.version(&#x27;0.0.1&#x27;)
+.option(&#x27;-C, --chdir &#x3c;path&#x3e;&#x27;, &#x27;change the working directory&#x27;)
+.option(&#x27;-c, --config &#x3c;path&#x3e;&#x27;, &#x27;set config path. defaults to ./deploy.conf&#x27;)
+.option(&#x27;-T, --no-tests&#x27;, &#x27;ignore test hook&#x27;)
+
+program
+.command(&#x27;setup [env]&#x27;)
+.<span class="apidocCodeKeywordSpan">description</span>(&#x27;run setup commands for all envs&#x27;)
+.option(&#x22;-s, --setup_mode [mode]&#x22;, &#x22;Which setup mode to use&#x22;)
+.action(function(env, options){
+  var mode = options.setup_mode || &#x22;normal&#x22;;
+  env = env || &#x27;all&#x27;;
+  console.log(&#x27;setup for %s env(s) with %s mode&#x27;, env, mode);
+});
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.commander.Command.prototype.executeSubCommand" id="apidoc.element.commander.Command.prototype.executeSubCommand">
+        function <span class="apidocSignatureSpan">commander.Command.prototype.</span>executeSubCommand
+        <span class="apidocSignatureSpan">(argv, args, unknown)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">executeSubCommand = function (argv, args, unknown) {
+  args = args.concat(unknown);
+
+  if (!args.length) this.help();
+  if (&#x27;help&#x27; == args[0] &#x26;&#x26; 1 == args.length) this.help();
+
+  // &#x3c;cmd&#x3e; --help
+  if (&#x27;help&#x27; == args[0]) {
+    args[0] = args[1];
+    args[1] = &#x27;--help&#x27;;
+  }
+
+  // executable
+  var f = argv[1];
+  // name of the subcommand, link `pm-install`
+  var bin = basename(f, &#x27;.js&#x27;) + &#x27;-&#x27; + args[0];
+
+
+  // In case of globally installed, get the base dir where executable
+  //  subcommand file should be located at
+  var baseDir
+    , link = readlink(f);
+
+  // when symbolink is relative path
+  if (link !== f &#x26;&#x26; link.charAt(0) !== &#x27;/&#x27;) {
+    link = path.join(dirname(f), link)
+  }
+  baseDir = dirname(link);
+
+  // prefer local `./&#x3c;bin&#x3e;` to bin in the $PATH
+  var localBin = path.join(baseDir, bin);
+
+  // whether bin file is a js script with explicit `.js` extension
+  var isExplicitJS = false;
+  if (exists(localBin + &#x27;.js&#x27;)) {
+    bin = localBin + &#x27;.js&#x27;;
+    isExplicitJS = true;
+  } else if (exists(localBin)) {
+    bin = localBin;
+  }
+
+  args = args.slice(1);
+
+  var proc;
+  if (process.platform !== &#x27;win32&#x27;) {
+    if (isExplicitJS) {
+      args.unshift(localBin);
+      // add executable arguments to spawn
+      args = (process.execArgv || []).concat(args);
+
+      proc = spawn(&#x27;node&#x27;, args, { stdio: &#x27;inherit&#x27;, customFds: [0, 1, 2] });
+    } else {
+      proc = spawn(bin, args, { stdio: &#x27;inherit&#x27;, customFds: [0, 1, 2] });
+    }
+  } else {
+    args.unshift(localBin);
+    proc = spawn(process.execPath, args, { stdio: &#x27;inherit&#x27;});
+  }
+
+  proc.on(&#x27;close&#x27;, process.exit.bind(process));
+  proc.on(&#x27;error&#x27;, function(err) {
+    if (err.code == &#x22;ENOENT&#x22;) {
+      console.error(&#x27;\n  %s(1) does not exist, try --help\n&#x27;, bin);
+    } else if (err.code == &#x22;EACCES&#x22;) {
+      console.error(&#x27;\n  %s(1) not executable. try chmod or run with root\n&#x27;, bin);
+    }
+    process.exit(1);
+  });
+
+  // Store the reference to the child process
+  this.runningCommand = proc;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var args = this.args = parsed.args;
+
+var result = this.parseArgs(this.args, parsed.unknown);
+
+// executable sub-commands
+var name = result.args[0];
+if (this._execs[name] &#x26;&#x26; typeof this._execs[name] != &#x22;function&#x22;) {
+  return this.<span class="apidocCodeKeywordSpan">executeSubCommand</span>(argv, args, parsed.unknown);
+} else if (this.defaultExecutable) {
+  // use the default subcommand
+  args.unshift(name = this.defaultExecutable);
+  return this.executeSubCommand(argv, args, parsed.unknown);
+}
+
+return result;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.commander.Command.prototype.help" id="apidoc.element.commander.Command.prototype.help">
+        function <span class="apidocSignatureSpan">commander.Command.prototype.</span>help
+        <span class="apidocSignatureSpan">(cb)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">help = function (cb) {
+  this.outputHelp(cb);
+  process.exit();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  }
+
+function make_red(txt) {
+  return colors.red(txt); //display the help text in red on the console
+}
+```
+
+## .<span class="apidocCodeKeywordSpan">help</span>(cb)
+
+  Output help information and exit immediately.
+  Optional callback cb allows post-processing of help text before it is displayed.
+
+## Examples
+
+```js
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.commander.Command.prototype.helpInformation" id="apidoc.element.commander.Command.prototype.helpInformation">
+        function <span class="apidocSignatureSpan">commander.Command.prototype.</span>helpInformation
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">helpInformation = function () {
+  var desc = [];
+  if (this._description) {
+    desc = [
+      &#x27;  &#x27; + this._description
+      , &#x27;&#x27;
+    ];
+  }
+
+  var cmdName = this._name;
+  if (this._alias) {
+    cmdName = cmdName + &#x27;|&#x27; + this._alias;
+  }
+  var usage = [
+    &#x27;&#x27;
+    ,&#x27;  Usage: &#x27; + cmdName + &#x27; &#x27; + this.usage()
+    , &#x27;&#x27;
+  ];
+
+  var cmds = [];
+  var commandHelp = this.commandHelp();
+  if (commandHelp) cmds = [commandHelp];
+
+  var options = [
+    &#x27;  Options:&#x27;
+    , &#x27;&#x27;
+    , &#x27;&#x27; + this.optionHelp().replace(/^/gm, &#x27;    &#x27;)
+    , &#x27;&#x27;
+    , &#x27;&#x27;
+  ];
+
+  return usage
+    .concat(cmds)
+    .concat(desc)
+    .concat(options)
+    .join(&#x27;\n&#x27;);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+Command.prototype.outputHelp = function(cb) {
+ if (!cb) {
+   cb = function(passthru) {
+     return passthru;
+   }
+ }
+ process.stdout.write(cb(this.<span class="apidocCodeKeywordSpan">helpInformation</span>()));
+ this.emit(&#x27;--help&#x27;);
+};
+
+/**
+* Output help information and exit.
+*
+* @api public
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.commander.Command.prototype.largestOptionLength" id="apidoc.element.commander.Command.prototype.largestOptionLength">
+        function <span class="apidocSignatureSpan">commander.Command.prototype.</span>largestOptionLength
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">largestOptionLength = function () {
+  return this.options.reduce(function(max, option) {
+    return Math.max(max, option.flags.length);
+  }, 0);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ * Return help for options.
+ *
+ * @return {String}
+ * @api private
+ */
+
+Command.prototype.optionHelp = function() {
+var width = this.<span class="apidocCodeKeywordSpan">largestOptionLength</span>();
+
+// Prepend the help information
+return [pad(&#x27;-h, --help&#x27;, width) + &#x27;  &#x27; + &#x27;output usage information&#x27;]
+    .concat(this.options.map(function(option) {
+      return pad(option.flags, width) + &#x27;  &#x27; + option.description;
+    }))
+    .join(&#x27;\n&#x27;);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.commander.Command.prototype.missingArgument" id="apidoc.element.commander.Command.prototype.missingArgument">
+        function <span class="apidocSignatureSpan">commander.Command.prototype.</span>missingArgument
+        <span class="apidocSignatureSpan">(name)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">missingArgument = function (name) {
+  console.error();
+  console.error(&#x22;  error: missing required argument `%s&#x27;&#x22;, name);
+  console.error();
+  process.exit(1);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    }
+
+    // Leftover arguments need to be pushed back. Fixes issue #56
+    if (parsed.args.length) args = parsed.args.concat(args);
+
+    self._args.forEach(function(arg, i) {
+if (arg.required &#x26;&#x26; null == args[i]) {
+  self.<span class="apidocCodeKeywordSpan">missingArgument</span>(arg.name);
+} else if (arg.variadic) {
+  if (i !== self._args.length - 1) {
+    self.variadicArgNotLast(arg.name);
+  }
+
+  args[i] = args.splice(i);
+}
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.commander.Command.prototype.name" id="apidoc.element.commander.Command.prototype.name">
+        function <span class="apidocSignatureSpan">commander.Command.prototype.</span>name
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">name = function () {
+  return this._name;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ * @return {Command} for chaining
+ * @api public
+ */
+
+Command.prototype.option = function(flags, description, fn, defaultValue) {
+var self = this
+  , option = new Option(flags, description)
+  , oname = option.<span class="apidocCodeKeywordSpan">name</span>()
+  , name = camelcase(oname);
+
+// default as 3rd arg
+if (typeof fn != &#x27;function&#x27;) {
+  if (fn instanceof RegExp) {
+    var regex = fn;
+    fn = function(val, def) {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.commander.Command.prototype.normalize" id="apidoc.element.commander.Command.prototype.normalize">
+        function <span class="apidocSignatureSpan">commander.Command.prototype.</span>normalize
+        <span class="apidocSignatureSpan">(args)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">normalize = function (args) {
+  var ret = []
+    , arg
+    , lastOpt
+    , index;
+
+  for (var i = 0, len = args.length; i &#x3c; len; ++i) {
+    arg = args[i];
+    if (i &#x3e; 0) {
+      lastOpt = this.optionFor(args[i-1]);
+    }
+
+    if (arg === &#x27;--&#x27;) {
+      // Honor option terminator
+      ret = ret.concat(args.slice(i));
+      break;
+    } else if (lastOpt &#x26;&#x26; lastOpt.required) {
+      ret.push(arg);
+    } else if (arg.length &#x3e; 1 &#x26;&#x26; &#x27;-&#x27; == arg[0] &#x26;&#x26; &#x27;-&#x27; != arg[1]) {
+      arg.slice(1).split(&#x27;&#x27;).forEach(function(c) {
+        ret.push(&#x27;-&#x27; + c);
+      });
+    } else if (/^--/.test(arg) &#x26;&#x26; ~(index = arg.indexOf(&#x27;=&#x27;))) {
+      ret.push(arg.slice(0, index), arg.slice(index + 1));
+    } else {
+      ret.push(arg);
+    }
+  }
+
+  return ret;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+// github-style sub-commands with no sub-command
+if (this.executables &#x26;&#x26; argv.length &#x3c; 3 &#x26;&#x26; !this.defaultExecutable) {
+  // this user needs help
+  argv.push(&#x27;--help&#x27;);
+}
+
+// process argv
+var parsed = this.parseOptions(this.<span class="apidocCodeKeywordSpan">normalize</span>(argv.slice(2)));
+var args = this.args = parsed.args;
+
+var result = this.parseArgs(this.args, parsed.unknown);
+
+// executable sub-commands
+var name = result.args[0];
+if (this._execs[name] &#x26;&#x26; typeof this._execs[name] != &#x22;function&#x22;) {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.commander.Command.prototype.option" id="apidoc.element.commander.Command.prototype.option">
+        function <span class="apidocSignatureSpan">commander.Command.prototype.</span>option
+        <span class="apidocSignatureSpan">(flags, description, fn, defaultValue)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">option = function (flags, description, fn, defaultValue) {
+  var self = this
+    , option = new Option(flags, description)
+    , oname = option.name()
+    , name = camelcase(oname);
+
+  // default as 3rd arg
+  if (typeof fn != &#x27;function&#x27;) {
+    if (fn instanceof RegExp) {
+      var regex = fn;
+      fn = function(val, def) {
+        var m = regex.exec(val);
+        return m ? m[0] : def;
+      }
+    }
+    else {
+      defaultValue = fn;
+      fn = null;
+    }
+  }
+
+  // preassign default value only for --no-*, [optional], or &#x3c;required&#x3e;
+  if (false == option.bool || option.optional || option.required) {
+    // when --no-* we make sure default is true
+    if (false == option.bool) defaultValue = true;
+    // preassign only if we have a default
+    if (undefined !== defaultValue) self[name] = defaultValue;
+  }
+
+  // register the option
+  this.options.push(option);
+
+  // when it&#x27;s passed assign the value
+  // and conditionally invoke the callback
+  this.on(oname, function(val) {
+    // coercion
+    if (null !== val &#x26;&#x26; fn) val = fn(val, undefined === self[name]
+      ? defaultValue
+      : self[name]);
+
+    // unassigned or bool
+    if (&#x27;boolean&#x27; == typeof self[name] || &#x27;undefined&#x27; == typeof self[name]) {
+      // if no value, bool true, and we have a default, then use it!
+      if (null == val) {
+        self[name] = option.bool
+          ? defaultValue || true
+          : false;
+      } else {
+        self[name] = val;
+      }
+    } else if (null !== val) {
+      // reassign
+      self[name] = val;
+    }
+  });
+
+  return this;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+## Installation
+
+   $ npm install commander
+
+## Option parsing
+
+Options with commander are defined with the `.<span class="apidocCodeKeywordSpan">option</span>()` method, also serving as documentation
+ for the options. The example below parses args and options from `process.argv`, leaving remaining args as the `program.args` array
+ which were not consumed by options.
+
+```js
+#!/usr/bin/env node
+
+/**
+* Module dependencies.
+*/
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.commander.Command.prototype.optionFor" id="apidoc.element.commander.Command.prototype.optionFor">
+        function <span class="apidocSignatureSpan">commander.Command.prototype.</span>optionFor
+        <span class="apidocSignatureSpan">(arg)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">optionFor = function (arg) {
+  for (var i = 0, len = this.options.length; i &#x3c; len; ++i) {
+    if (this.options[i].is(arg)) {
+      return this.options[i];
+    }
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+, arg
+, lastOpt
+, index;
+
+  for (var i = 0, len = args.length; i &#x3c; len; ++i) {
+arg = args[i];
+if (i &#x3e; 0) {
+  lastOpt = this.<span class="apidocCodeKeywordSpan">optionFor</span>(args[i-1]);
+}
+
+if (arg === &#x27;--&#x27;) {
+  // Honor option terminator
+  ret = ret.concat(args.slice(i));
+  break;
+} else if (lastOpt &#x26;&#x26; lastOpt.required) {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.commander.Command.prototype.optionHelp" id="apidoc.element.commander.Command.prototype.optionHelp">
+        function <span class="apidocSignatureSpan">commander.Command.prototype.</span>optionHelp
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">optionHelp = function () {
+  var width = this.largestOptionLength();
+
+  // Prepend the help information
+  return [pad(&#x27;-h, --help&#x27;, width) + &#x27;  &#x27; + &#x27;output usage information&#x27;]
+      .concat(this.options.map(function(option) {
+        return pad(option.flags, width) + &#x27;  &#x27; + option.description;
+      }))
+      .join(&#x27;\n&#x27;);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var cmds = [];
+var commandHelp = this.commandHelp();
+if (commandHelp) cmds = [commandHelp];
+
+var options = [
+  &#x27;  Options:&#x27;
+  , &#x27;&#x27;
+  , &#x27;&#x27; + this.<span class="apidocCodeKeywordSpan">optionHelp</span>().replace(/^/gm, &#x27;    &#x27;)
+  , &#x27;&#x27;
+  , &#x27;&#x27;
+];
+
+return usage
+  .concat(cmds)
+  .concat(desc)
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.commander.Command.prototype.optionMissingArgument" id="apidoc.element.commander.Command.prototype.optionMissingArgument">
+        function <span class="apidocSignatureSpan">commander.Command.prototype.</span>optionMissingArgument
+        <span class="apidocSignatureSpan">(option, flag)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">optionMissingArgument = function (option, flag) {
+  console.error();
+  if (flag) {
+    console.error(&#x22;  error: option `%s&#x27; argument missing, got `%s&#x27;&#x22;, option.flags, flag);
+  } else {
+    console.error(&#x22;  error: option `%s&#x27; argument missing&#x22;, option.flags);
+  }
+  console.error();
+  process.exit(1);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+option = this.optionFor(arg);
+
+// option is defined
+if (option) {
+  // requires arg
+  if (option.required) {
+    arg = argv[++i];
+    if (null == arg) return this.<span class="apidocCodeKeywordSpan">optionMissingArgument</span>(option);
+    this.emit(option.name(), arg);
+  // optional arg
+  } else if (option.optional) {
+    arg = argv[i+1];
+    if (null == arg || (&#x27;-&#x27; == arg[0] &#x26;&#x26; &#x27;-&#x27; != arg)) {
+      arg = null;
+    } else {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.commander.Command.prototype.opts" id="apidoc.element.commander.Command.prototype.opts">
+        function <span class="apidocSignatureSpan">commander.Command.prototype.</span>opts
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">opts = function () {
+  var result = {}
+    , len = this.options.length;
+
+  for (var i = 0 ; i &#x3c; len; i++) {
+    var key = camelcase(this.options[i].name());
+    result[key] = key === &#x27;version&#x27; ? this._version : this[key];
+  }
+  return result;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.commander.Command.prototype.outputHelp" id="apidoc.element.commander.Command.prototype.outputHelp">
+        function <span class="apidocSignatureSpan">commander.Command.prototype.</span>outputHelp
+        <span class="apidocSignatureSpan">(cb)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">outputHelp = function (cb) {
+  if (!cb) {
+    cb = function(passthru) {
+      return passthru;
+    }
+  }
+  process.stdout.write(cb(this.helpInformation()));
+  this.emit(&#x27;--help&#x27;);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+Examples:
+
+  $ custom-help --help
+  $ custom-help -h
+
+```
+
+## .<span class="apidocCodeKeywordSpan">outputHelp</span>(cb)
+
+Output help information without exiting.
+Optional callback cb allows post-processing of help text before it is displayed.
+
+If you want to display help by default (e.g. if no command was provided), you can use something like:
+
+```js
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.commander.Command.prototype.parse" id="apidoc.element.commander.Command.prototype.parse">
+        function <span class="apidocSignatureSpan">commander.Command.prototype.</span>parse
+        <span class="apidocSignatureSpan">(argv)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parse = function (argv) {
+  // implicit help
+  if (this.executables) this.addImplicitHelpCommand();
+
+  // store raw args
+  this.rawArgs = argv;
+
+  // guess name
+  this._name = this._name || basename(argv[1], &#x27;.js&#x27;);
+
+  // github-style sub-commands with no sub-command
+  if (this.executables &#x26;&#x26; argv.length &#x3c; 3 &#x26;&#x26; !this.defaultExecutable) {
+    // this user needs help
+    argv.push(&#x27;--help&#x27;);
+  }
+
+  // process argv
+  var parsed = this.parseOptions(this.normalize(argv.slice(2)));
+  var args = this.args = parsed.args;
+
+  var result = this.parseArgs(this.args, parsed.unknown);
+
+  // executable sub-commands
+  var name = result.args[0];
+  if (this._execs[name] &#x26;&#x26; typeof this._execs[name] != &#x22;function&#x22;) {
+    return this.executeSubCommand(argv, args, parsed.unknown);
+  } else if (this.defaultExecutable) {
+    // use the default subcommand
+    args.unshift(name = this.defaultExecutable);
+    return this.executeSubCommand(argv, args, parsed.unknown);
+  }
+
+  return result;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+program
+  .version(&#x27;0.0.1&#x27;)
+  .option(&#x27;-p, --peppers&#x27;, &#x27;Add peppers&#x27;)
+  .option(&#x27;-P, --pineapple&#x27;, &#x27;Add pineapple&#x27;)
+  .option(&#x27;-b, --bbq-sauce&#x27;, &#x27;Add bbq sauce&#x27;)
+  .option(&#x27;-c, --cheese [type]&#x27;, &#x27;Add the specified type of cheese [marble]&#x27;, &#x27;marble&#x27;)
+  .<span class="apidocCodeKeywordSpan">parse</span>(process.argv);
+
+console.log(&#x27;you ordered a pizza with:&#x27;);
+if (program.peppers) console.log(&#x27;  - peppers&#x27;);
+if (program.pineapple) console.log(&#x27;  - pineapple&#x27;);
+if (program.bbqSauce) console.log(&#x27;  - bbq&#x27;);
+console.log(&#x27;  - %s cheese&#x27;, program.cheese);
+```
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.commander.Command.prototype.parseArgs" id="apidoc.element.commander.Command.prototype.parseArgs">
+        function <span class="apidocSignatureSpan">commander.Command.prototype.</span>parseArgs
+        <span class="apidocSignatureSpan">(args, unknown)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parseArgs = function (args, unknown) {
+  var name;
+
+  if (args.length) {
+    name = args[0];
+    if (this.listeners(name).length) {
+      this.emit(args.shift(), args, unknown);
+    } else {
+      this.emit(&#x27;*&#x27;, args);
+    }
+  } else {
+    outputHelpIfNecessary(this, unknown);
+
+    // If there were no args and we have unknown options,
+    // then they are extraneous and we need to error.
+    if (unknown.length &#x3e; 0) {
+      this.unknownOption(unknown[0]);
+    }
+  }
+
+  return this;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  argv.push(&#x27;--help&#x27;);
+}
+
+// process argv
+var parsed = this.parseOptions(this.normalize(argv.slice(2)));
+var args = this.args = parsed.args;
+
+var result = this.<span class="apidocCodeKeywordSpan">parseArgs</span>(this.args, parsed.unknown);
+
+// executable sub-commands
+var name = result.args[0];
+if (this._execs[name] &#x26;&#x26; typeof this._execs[name] != &#x22;function&#x22;) {
+  return this.executeSubCommand(argv, args, parsed.unknown);
+} else if (this.defaultExecutable) {
+  // use the default subcommand
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.commander.Command.prototype.parseExpectedArgs" id="apidoc.element.commander.Command.prototype.parseExpectedArgs">
+        function <span class="apidocSignatureSpan">commander.Command.prototype.</span>parseExpectedArgs
+        <span class="apidocSignatureSpan">(args)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parseExpectedArgs = function (args) {
+  if (!args.length) return;
+  var self = this;
+  args.forEach(function(arg) {
+    var argDetails = {
+      required: false,
+      name: &#x27;&#x27;,
+      variadic: false
+    };
+
+    switch (arg[0]) {
+      case &#x27;&#x3c;&#x27;:
+        argDetails.required = true;
+        argDetails.name = arg.slice(1, -1);
+        break;
+      case &#x27;[&#x27;:
+        argDetails.name = arg.slice(1, -1);
+        break;
+    }
+
+    if (argDetails.name.length &#x3e; 3 &#x26;&#x26; argDetails.name.slice(-3) === &#x27;...&#x27;) {
+      argDetails.variadic = true;
+      argDetails.name = argDetails.name.slice(0, -3);
+    }
+    if (argDetails.name) {
+      self._args.push(argDetails);
+    }
+  });
+  return this;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    this.executables = true;
+    this._execs[cmd._name] = true;
+    if (opts.isDefault) this.defaultExecutable = cmd._name;
+  }
+
+  cmd._noHelp = !!opts.noHelp;
+  this.commands.push(cmd);
+  cmd.<span class="apidocCodeKeywordSpan">parseExpectedArgs</span>(args);
+  cmd.parent = this;
+
+  if (desc) return this;
+  return cmd;
+};
+
+/**
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.commander.Command.prototype.parseOptions" id="apidoc.element.commander.Command.prototype.parseOptions">
+        function <span class="apidocSignatureSpan">commander.Command.prototype.</span>parseOptions
+        <span class="apidocSignatureSpan">(argv)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parseOptions = function (argv) {
+  var args = []
+    , len = argv.length
+    , literal
+    , option
+    , arg;
+
+  var unknownOptions = [];
+
+  // parse options
+  for (var i = 0; i &#x3c; len; ++i) {
+    arg = argv[i];
+
+    // literal args after --
+    if (&#x27;--&#x27; == arg) {
+      literal = true;
+      continue;
+    }
+
+    if (literal) {
+      args.push(arg);
+      continue;
+    }
+
+    // find matching Option
+    option = this.optionFor(arg);
+
+    // option is defined
+    if (option) {
+      // requires arg
+      if (option.required) {
+        arg = argv[++i];
+        if (null == arg) return this.optionMissingArgument(option);
+        this.emit(option.name(), arg);
+      // optional arg
+      } else if (option.optional) {
+        arg = argv[i+1];
+        if (null == arg || (&#x27;-&#x27; == arg[0] &#x26;&#x26; &#x27;-&#x27; != arg)) {
+          arg = null;
+        } else {
+          ++i;
+        }
+        this.emit(option.name(), arg);
+      // bool
+      } else {
+        this.emit(option.name());
+      }
+      continue;
+    }
+
+    // looks like an option
+    if (arg.length &#x3e; 1 &#x26;&#x26; &#x27;-&#x27; == arg[0]) {
+      unknownOptions.push(arg);
+
+      // If the next argument looks like it might be
+      // an argument for this option, we pass it on.
+      // If it isn&#x27;t, then it&#x27;ll simply be ignored
+      if (argv[i+1] &#x26;&#x26; &#x27;-&#x27; != argv[i+1][0]) {
+        unknownOptions.push(argv[++i]);
+      }
+      continue;
+    }
+
+    // arg
+    args.push(arg);
+  }
+
+  return { args: args, unknown: unknownOptions };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+Command.prototype.action = function(fn) {
+  var self = this;
+  var listener = function(args, unknown) {
+// Parse any so-far unknown options
+args = args || [];
+unknown = unknown || [];
+
+var parsed = self.<span class="apidocCodeKeywordSpan">parseOptions</span>(unknown);
+
+// Output help if necessary
+outputHelpIfNecessary(self, parsed.unknown);
+
+// If there are still any unknown options, then we simply
+// die, unless someone asked for help, in which case we give it
+// to them, and then we die.
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.commander.Command.prototype.unknownOption" id="apidoc.element.commander.Command.prototype.unknownOption">
+        function <span class="apidocSignatureSpan">commander.Command.prototype.</span>unknownOption
+        <span class="apidocSignatureSpan">(flag)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">unknownOption = function (flag) {
+  if (this._allowUnknownOption) return;
+  console.error();
+  console.error(&#x22;  error: unknown option `%s&#x27;&#x22;, flag);
+  console.error();
+  process.exit(1);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+// Output help if necessary
+outputHelpIfNecessary(self, parsed.unknown);
+
+// If there are still any unknown options, then we simply
+// die, unless someone asked for help, in which case we give it
+// to them, and then we die.
+if (parsed.unknown.length &#x3e; 0) {
+  self.<span class="apidocCodeKeywordSpan">unknownOption</span>(parsed.unknown[0]);
+}
+
+// Leftover arguments need to be pushed back. Fixes issue #56
+if (parsed.args.length) args = parsed.args.concat(args);
+
+self._args.forEach(function(arg, i) {
+  if (arg.required &#x26;&#x26; null == args[i]) {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.commander.Command.prototype.usage" id="apidoc.element.commander.Command.prototype.usage">
+        function <span class="apidocSignatureSpan">commander.Command.prototype.</span>usage
+        <span class="apidocSignatureSpan">(str)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">usage = function (str) {
+  var args = this._args.map(function(arg) {
+    return humanReadableArgName(arg);
+  });
+
+  var usage = &#x27;[options]&#x27;
+    + (this.commands.length ? &#x27; [command]&#x27; : &#x27;&#x27;)
+    + (this._args.length ? &#x27; &#x27; + args.join(&#x27; &#x27;) : &#x27;&#x27;);
+
+  if (0 == arguments.length) return this._usage || usage;
+  this._usage = str;
+
+  return this;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+function increaseVerbosity(v, total) {
+return total + 1;
+}
+
+program
+.version(&#x27;0.0.1&#x27;)
+.<span class="apidocCodeKeywordSpan">usage</span>(&#x27;[options] &#x3c;file ...&#x3e;&#x27;)
+.option(&#x27;-i, --integer &#x3c;n&#x3e;&#x27;, &#x27;An integer argument&#x27;, parseInt)
+.option(&#x27;-f, --float &#x3c;n&#x3e;&#x27;, &#x27;A float argument&#x27;, parseFloat)
+.option(&#x27;-r, --range &#x3c;a&#x3e;..&#x3c;b&#x3e;&#x27;, &#x27;A range&#x27;, range)
+.option(&#x27;-l, --list &#x3c;items&#x3e;&#x27;, &#x27;A list&#x27;, list)
+.option(&#x27;-o, --optional [value]&#x27;, &#x27;An optional value&#x27;)
+.option(&#x27;-c, --collect [value]&#x27;, &#x27;A repeatable value&#x27;, collect, [])
+.option(&#x27;-v, --verbose&#x27;, &#x27;A value that can be increased&#x27;, increaseVerbosity, 0)
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.commander.Command.prototype.variadicArgNotLast" id="apidoc.element.commander.Command.prototype.variadicArgNotLast">
+        function <span class="apidocSignatureSpan">commander.Command.prototype.</span>variadicArgNotLast
+        <span class="apidocSignatureSpan">(name)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">variadicArgNotLast = function (name) {
+  console.error();
+  console.error(&#x22;  error: variadic arguments must be last `%s&#x27;&#x22;, name);
+  console.error();
+  process.exit(1);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+if (parsed.args.length) args = parsed.args.concat(args);
+
+self._args.forEach(function(arg, i) {
+  if (arg.required &#x26;&#x26; null == args[i]) {
+    self.missingArgument(arg.name);
+  } else if (arg.variadic) {
+    if (i !== self._args.length - 1) {
+      self.<span class="apidocCodeKeywordSpan">variadicArgNotLast</span>(arg.name);
+    }
+
+    args[i] = args.splice(i);
+  }
+});
+
+// Always append ourselves to the end of the arguments,
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.commander.Command.prototype.version" id="apidoc.element.commander.Command.prototype.version">
+        function <span class="apidocSignatureSpan">commander.Command.prototype.</span>version
+        <span class="apidocSignatureSpan">(str, flags)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">version = function (str, flags) {
+  if (0 == arguments.length) return this._version;
+  this._version = str;
+  flags = flags || &#x27;-V, --version&#x27;;
+  this.option(flags, &#x27;output the version number&#x27;);
+  this.on(&#x27;version&#x27;, function() {
+    process.stdout.write(str + &#x27;\n&#x27;);
+    process.exit(0);
+  });
+  return this;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+/**
+ * Module dependencies.
+ */
+
+var program = require(&#x27;commander&#x27;);
+
+program
+  .<span class="apidocCodeKeywordSpan">version</span>(&#x27;0.0.1&#x27;)
+  .option(&#x27;-p, --peppers&#x27;, &#x27;Add peppers&#x27;)
+  .option(&#x27;-P, --pineapple&#x27;, &#x27;Add pineapple&#x27;)
+  .option(&#x27;-b, --bbq-sauce&#x27;, &#x27;Add bbq sauce&#x27;)
+  .option(&#x27;-c, --cheese [type]&#x27;, &#x27;Add the specified type of cheese [marble]&#x27;, &#x27;marble&#x27;)
+  .parse(process.argv);
+
+console.log(&#x27;you ordered a pizza with:&#x27;);
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.commander.Option" id="apidoc.module.commander.Option">module commander.Option</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.commander.Option.Option" id="apidoc.element.commander.Option.Option">
+        function <span class="apidocSignatureSpan">commander.</span>Option
+        <span class="apidocSignatureSpan">(flags, description)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Option(flags, description) {
+  this.flags = flags;
+  this.required = ~flags.indexOf(&#x27;&#x3c;&#x27;);
+  this.optional = ~flags.indexOf(&#x27;[&#x27;);
+  this.bool = !~flags.indexOf(&#x27;-no-&#x27;);
+  flags = flags.split(/[ ,|]+/);
+  if (flags.length &#x3e; 1 &#x26;&#x26; !/^[[&#x3c;]/.test(flags[1])) this.short = flags.shift();
+  this.long = flags.shift();
+  this.description = description || &#x27;&#x27;;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.commander.Option.prototype" id="apidoc.module.commander.Option.prototype">module commander.Option.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.commander.Option.prototype.is" id="apidoc.element.commander.Option.prototype.is">
+        function <span class="apidocSignatureSpan">commander.Option.prototype.</span>is
+        <span class="apidocSignatureSpan">(arg)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">is = function (arg) {
+  return arg == this.short || arg == this.long;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+* @param {String} arg
+* @return {Option}
+* @api private
+*/
+
+Command.prototype.optionFor = function(arg) {
+ for (var i = 0, len = this.options.length; i &#x3c; len; ++i) {
+   if (this.options[i].<span class="apidocCodeKeywordSpan">is</span>(arg)) {
+     return this.options[i];
+   }
+ }
+};
+
+/**
+* Parse options from `argv` returning `argv`
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.commander.Option.prototype.name" id="apidoc.element.commander.Option.prototype.name">
+        function <span class="apidocSignatureSpan">commander.Option.prototype.</span>name
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">name = function () {
+  return this.long
+    .replace(&#x27;--&#x27;, &#x27;&#x27;)
+    .replace(&#x27;no-&#x27;, &#x27;&#x27;);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ * @return {Command} for chaining
+ * @api public
+ */
+
+Command.prototype.option = function(flags, description, fn, defaultValue) {
+var self = this
+  , option = new Option(flags, description)
+  , oname = option.<span class="apidocCodeKeywordSpan">name</span>()
+  , name = camelcase(oname);
+
+// default as 3rd arg
+if (typeof fn != &#x27;function&#x27;) {
+  if (fn instanceof RegExp) {
+    var regex = fn;
+    fn = function(val, def) {
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
