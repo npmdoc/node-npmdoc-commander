@@ -1,6 +1,6 @@
 # npmdoc-commander
 
-#### api documentation for  [commander (v2.9.0)](https://github.com/tj/commander.js#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-commander.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-commander) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-commander.svg)](https://travis-ci.org/npmdoc/node-npmdoc-commander)
+#### basic api documentation for  [commander (v2.9.0)](https://github.com/tj/commander.js#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-commander.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-commander) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-commander.svg)](https://travis-ci.org/npmdoc/node-npmdoc-commander)
 
 #### the complete solution for node.js command-line programs
 
@@ -75,7 +75,8 @@
     "scripts": {
         "test": "make test"
     },
-    "version": "2.9.0"
+    "version": "2.9.0",
+    "bin": {}
 }
 ```
 
