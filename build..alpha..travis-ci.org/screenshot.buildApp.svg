@@ -1,0 +1,141 @@
+<svg height="1326" width="720" xmlns="http://www.w3.org/2000/svg">
+<rect height="1326" fill="#555" width="720"></rect>
+<text fill="#7f7" font-family="Courier New" font-size="12" xml:space="preserve">
+<tspan x="10" y="26"></tspan>
+
+<tspan x="10" y="42">[MODE_BUILD=buildApp] - 2018-06-10T18:17:43.297Z - npm-testing /home/travis/build/npmdoc/node-np\</tspan>
+<tspan x="10" y="58">mdoc-commander</tspan>
+
+<tspan x="10" y="74"></tspan>
+
+<tspan x="10" y="90"></tspan>
+
+<tspan x="10" y="106">buildApp - merged test-report from file /home/travis/build/npmdoc/node-npmdoc-commander/tmp/buil\</tspan>
+<tspan x="10" y="122">d/test-report.json</tspan>
+
+<tspan x="10" y="138">&gt; server listening on http-port 38269</tspan>
+
+<tspan x="10" y="154">apidocCreate - readExample /home/travis/build/npmdoc/node-npmdoc-commander/node_modules/commande\</tspan>
+<tspan x="10" y="170">r/package.json</tspan>
+
+<tspan x="10" y="186">apidocCreate - readExample /home/travis/build/npmdoc/node-npmdoc-commander/node_modules/commande\</tspan>
+<tspan x="10" y="202">r/CHANGELOG.md</tspan>
+
+<tspan x="10" y="218">apidocCreate - readExample /home/travis/build/npmdoc/node-npmdoc-commander/node_modules/commande\</tspan>
+<tspan x="10" y="234">r/.gitignore</tspan>
+
+<tspan x="10" y="250">apidocCreate - readExample /home/travis/build/npmdoc/node-npmdoc-commander/node_modules/commande\</tspan>
+<tspan x="10" y="266">r/index.js</tspan>
+
+<tspan x="10" y="282">apidocCreate - readExample /home/travis/build/npmdoc/node-npmdoc-commander/node_modules/commande\</tspan>
+<tspan x="10" y="298">r/LICENSE</tspan>
+
+<tspan x="10" y="314">apidocCreate - readExample /home/travis/build/npmdoc/node-npmdoc-commander/node_modules/commande\</tspan>
+<tspan x="10" y="330">r/package.json</tspan>
+
+<tspan x="10" y="346">apidocCreate - readExample /home/travis/build/npmdoc/node-npmdoc-commander/node_modules/commande\</tspan>
+<tspan x="10" y="362">r/Readme.md</tspan>
+
+<tspan x="10" y="378">apidocCreate - readExample /home/travis/build/npmdoc/node-npmdoc-commander/node_modules/commande\</tspan>
+<tspan x="10" y="394">r/typings/index.d.ts</tspan>
+
+<tspan x="10" y="410">apidocCreate - requiring /home/travis/build/npmdoc/node-npmdoc-commander/node_modules/commander \</tspan>
+<tspan x="10" y="426">...</tspan>
+
+<tspan x="10" y="442">apidocCreate - ... required /home/travis/build/npmdoc/node-npmdoc-commander/node_modules/command\</tspan>
+<tspan x="10" y="458">er</tspan>
+
+<tspan x="10" y="474">created apidoc file /home/travis/build/npmdoc/node-npmdoc-commander/tmp/build/apidoc.html</tspan>
+
+<tspan x="10" y="490"></tspan>
+
+<tspan x="10" y="506">apidocCreate - readExample /home/travis/build/npmdoc/node-npmdoc-commander/node_modules/commande\</tspan>
+<tspan x="10" y="522">r/package.json</tspan>
+
+<tspan x="10" y="538">apidocCreate - readExample /home/travis/build/npmdoc/node-npmdoc-commander/node_modules/commande\</tspan>
+<tspan x="10" y="554">r/CHANGELOG.md</tspan>
+
+<tspan x="10" y="570">apidocCreate - readExample /home/travis/build/npmdoc/node-npmdoc-commander/node_modules/commande\</tspan>
+<tspan x="10" y="586">r/.gitignore</tspan>
+
+<tspan x="10" y="602">apidocCreate - readExample /home/travis/build/npmdoc/node-npmdoc-commander/node_modules/commande\</tspan>
+<tspan x="10" y="618">r/index.js</tspan>
+
+<tspan x="10" y="634">apidocCreate - readExample /home/travis/build/npmdoc/node-npmdoc-commander/node_modules/commande\</tspan>
+<tspan x="10" y="650">r/LICENSE</tspan>
+
+<tspan x="10" y="666">apidocCreate - readExample /home/travis/build/npmdoc/node-npmdoc-commander/node_modules/commande\</tspan>
+<tspan x="10" y="682">r/package.json</tspan>
+
+<tspan x="10" y="698">apidocCreate - readExample /home/travis/build/npmdoc/node-npmdoc-commander/node_modules/commande\</tspan>
+<tspan x="10" y="714">r/Readme.md</tspan>
+
+<tspan x="10" y="730">apidocCreate - readExample /home/travis/build/npmdoc/node-npmdoc-commander/node_modules/commande\</tspan>
+<tspan x="10" y="746">r/typings/index.d.ts</tspan>
+
+<tspan x="10" y="762">apidocCreate - requiring /home/travis/build/npmdoc/node-npmdoc-commander/node_modules/commander \</tspan>
+<tspan x="10" y="778">...</tspan>
+
+<tspan x="10" y="794">apidocCreate - ... required /home/travis/build/npmdoc/node-npmdoc-commander/node_modules/command\</tspan>
+<tspan x="10" y="810">er</tspan>
+
+<tspan x="10" y="826">created customOrg file /home/travis/build/npmdoc/node-npmdoc-commander/README.md</tspan>
+
+<tspan x="10" y="842"></tspan>
+
+<tspan x="10" y="858">(node:5733) DeprecationWarning: _linklist module is deprecated. Please use a userland alternativ\</tspan>
+<tspan x="10" y="874">e.</tspan>
+
+<tspan x="10" y="890">(node:5733) DeprecationWarning: sys is deprecated. Use util instead.</tspan>
+
+<tspan x="10" y="906">&gt; server listening on http-port 37356</tspan>
+
+<tspan x="10" y="922">[node test-case 1 of 1 passed] - testCase_buildApp_default</tspan>
+
+<tspan x="10" y="938"></tspan>
+
+<tspan x="10" y="954">buildApp - merged test-report from file /home/travis/build/npmdoc/node-npmdoc-commander/tmp/buil\</tspan>
+<tspan x="10" y="970">d/test-report.json</tspan>
+
+<tspan x="10" y="986"></tspan>
+
+<tspan x="10" y="1002">-------------------------------------------------------</tspan>
+
+<tspan x="10" y="1018">| test-report - buildApidoc - node - linux v6.14.2 - 2018-06-10T18:17:19.915Z</tspan>
+
+<tspan x="10" y="1034">|   29558 ms            0 failed        1 passed      |</tspan>
+
+<tspan x="10" y="1050">-------------------------------------------------------</tspan>
+
+<tspan x="10" y="1066">| test-report - buildApp - node - linux v6.14.2 - 2018-06-10T18:16:50.635Z</tspan>
+
+<tspan x="10" y="1082">|   26320 ms            0 failed        8 passed      |</tspan>
+
+<tspan x="10" y="1098">-------------------------------------------------------</tspan>
+
+<tspan x="10" y="1114">| test-report - npmTest - browser - / - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTM\</tspan>
+<tspan x="10" y="1130">L, like Gecko) Chrome/58.0.3029.110 Electron/1.7.15 Safari/537.36 - 2018-06-10T18:17:02.311Z</tspan>
+
+<tspan x="10" y="1146">|      43 ms            0 failed        8 passed      |</tspan>
+
+<tspan x="10" y="1162">-------------------------------------------------------</tspan>
+
+<tspan x="10" y="1178"></tspan>
+
+<tspan x="10" y="1194">created test-report file /home/travis/build/npmdoc/node-npmdoc-commander/tmp/build/test-report.h\</tspan>
+<tspan x="10" y="1210">tml</tspan>
+
+<tspan x="10" y="1226"></tspan>
+
+<tspan x="10" y="1242"></tspan>
+
+<tspan x="10" y="1258">buildApp - 0 failed tests</tspan>
+
+<tspan x="10" y="1274"></tspan>
+
+<tspan x="10" y="1290"></tspan>
+
+<tspan x="10" y="1306">[MODE_BUILD=buildApp] - 2018-06-10T18:17:51.020Z - EXIT_CODE - 0</tspan>
+
+</text>
+</svg>
