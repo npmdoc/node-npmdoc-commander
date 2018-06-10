@@ -1,6 +1,6 @@
 # npmdoc-commander
 
-#### basic api documentation for  [commander (v2.9.0)](https://github.com/tj/commander.js#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-commander.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-commander) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-commander.svg)](https://travis-ci.org/npmdoc/node-npmdoc-commander)
+#### basic api documentation for  [commander (2.15.1)](https://github.com/tj/commander.js#readme)  [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-commander.svg)](https://travis-ci.org/npmdoc/node-npmdoc-commander)
 
 #### the complete solution for node.js command-line programs
 
@@ -8,11 +8,11 @@
 
 - [https://npmdoc.github.io/node-npmdoc-commander/build/apidoc.html](https://npmdoc.github.io/node-npmdoc-commander/build/apidoc.html)
 
-[![apidoc](https://npmdoc.github.io/node-npmdoc-commander/build/screenCapture.buildCi.browser.%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-commander/build/apidoc.html)
+[![apidoc](https://npmdoc.github.io/node-npmdoc-commander/build/screenshot.buildCi.browser.%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-commander/build/apidoc.html)
 
-![npmPackageListing](https://npmdoc.github.io/node-npmdoc-commander/build/screenCapture.npmPackageListing.svg)
+![npmPackageListing](https://npmdoc.github.io/node-npmdoc-commander/build/screenshot.npmPackageListing.svg)
 
-![npmPackageDependencyTree](https://npmdoc.github.io/node-npmdoc-commander/build/screenCapture.npmPackageDependencyTree.svg)
+![npmPackageDependencyTree](https://npmdoc.github.io/node-npmdoc-commander/build/screenshot.npmPackageDependencyTree.svg)
 
 
 
@@ -27,28 +27,32 @@
     "bugs": {
         "url": "https://github.com/tj/commander.js/issues"
     },
-    "dependencies": {
-        "graceful-readlink": ">= 1.0.0"
-    },
+    "dependencies": {},
     "description": "the complete solution for node.js command-line programs",
     "devDependencies": {
-        "should": ">= 0.0.1",
-        "sinon": ">=1.17.1"
+        "@types/node": "^7.0.55",
+        "eslint": "^3.19.0",
+        "should": "^11.2.1",
+        "sinon": "^2.4.1",
+        "standard": "^10.0.3",
+        "typescript": "^2.7.2"
     },
     "directories": {},
     "dist": {
-        "shasum": "9c99094176e12240cb22d6c5146098400fe0f7d4",
-        "tarball": "https://registry.npmjs.org/commander/-/commander-2.9.0.tgz"
-    },
-    "engines": {
-        "node": ">= 0.6.x"
+        "integrity": "sha512-VlfT9F3V0v+jr4yxPc5gg9s62/fIVWsd2Bk2iD435um1NlGMYdVCq+MjcXnhYq2icNOizHr1kK+5TI6H0Hy0ag==",
+        "shasum": "df46e867d0fc2aec66a34662b406a9ccafff5b0f",
+        "tarball": "https://registry.npmjs.org/commander/-/commander-2.15.1.tgz",
+        "fileCount": 6,
+        "unpackedSize": 59781
     },
     "files": [
-        "index.js"
+        "index.js",
+        "typings/index.d.ts"
     ],
-    "gitHead": "b2aad7a8471d434593a85306aa73777a526e9f75",
+    "gitHead": "649eaef336ddc7224eb5c73e4a958685e24de25e",
     "homepage": "https://github.com/tj/commander.js#readme",
     "keywords": [
+        "commander",
         "command",
         "option",
         "parser"
@@ -57,10 +61,16 @@
     "main": "index",
     "maintainers": [
         {
-            "name": "tjholowaychuk"
+            "name": "abetomo"
         },
         {
             "name": "somekittens"
+        },
+        {
+            "name": "tjholowaychuk"
+        },
+        {
+            "name": "vanesyan"
         },
         {
             "name": "zhiyelee"
@@ -73,9 +83,12 @@
         "url": "git+https://github.com/tj/commander.js.git"
     },
     "scripts": {
-        "test": "make test"
+        "lint": "eslint index.js",
+        "test": "make test && npm run test-typings",
+        "test-typings": "node_modules/typescript/bin/tsc -p tsconfig.json"
     },
-    "version": "2.9.0",
+    "typings": "typings/index.d.ts",
+    "version": "2.15.1",
     "bin": {}
 }
 ```
